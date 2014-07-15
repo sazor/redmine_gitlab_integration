@@ -7,6 +7,7 @@
 <%= submit_tag l(:button_create_and_continue), :name => 'continue' %>
 <% end %>
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'config', :plugin => 'gitlab_int' %>
+    <%= stylesheet_link_tag 'gitlab', :plugin => 'gitlab_int' %>
+    <%= javascript_include_tag 'gitlab', :plugin => 'gitlab_int' %>
 <% end %>
 
