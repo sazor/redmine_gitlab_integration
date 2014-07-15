@@ -1,2 +1,14 @@
 <fieldset class="box tabular"><legend>Gitlab Project</legend>
+<p><%= label_tag :gitlab_name, l(:field_name) %><%= text_field_tag :gitlab_name, '', required: true, size: 60 %></p>
+<p><%= label_tag :gitlab_description, l(:field_description) %><%= text_area_tag :gitlab_description, '',  rows: 8 %></p>
+<p><%= label_tag :gitlab_id, l(:field_identifier) %><%= text_field_tag :gitlab_id, '', size: 30 %></p>
+<p>
+<%= label_tag :visibility, l(:visibility_level) %><br/>
+<%= radio_button_tag :visibility, 'private', true, class: "right-radio" %>
+<%= label_tag :visibility_private, l(:visibility_private), class: "right-radio" %><br/>
+<%= radio_button_tag :visibility, 'internal', false, class: "right-radio" %>
+<%= label_tag :visibility_internal, l(:visibility_internal), class: "right-radio" %><br/>
+<%= radio_button_tag :visibility, 'public', false, class: "right-radio" %>
+<%= label_tag :visibility_public, l(:visibility_public), class: "right-radio" %>
+</p>
 </fieldset>

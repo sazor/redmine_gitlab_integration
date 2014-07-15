@@ -1,3 +1,7 @@
 # English strings go here for Rails i18n
 en:
   # my_label: "My label"
+  visibility_level: "Visibility Level"
+  visibility_public: "Public"
+  visibility_internal: "Internal"
+  visibility_private: "Private"
