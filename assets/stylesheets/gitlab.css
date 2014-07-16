@@ -1,11 +1,12 @@
 p input.right-radio[type="radio"]{
     float: left;
+    clear: left;
 }
 fieldset.tabular p label.right-radio{
     margin-left: auto;
     text-align: left;
 }
-p input.right-radio{
-    clear: left;
+#auth_status{
+	display: none;
 }
 

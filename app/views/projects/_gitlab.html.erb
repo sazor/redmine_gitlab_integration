@@ -3,6 +3,7 @@
 <p><%= label_tag :gitlab_pass, "Password" %><%= password_field_tag :gitlab_pass, '', required: true %></p>
 <%= hidden_field_tag 'gitlab_url', Setting.plugin_gitlab_int['gitlab_url'] %>
 <%= button_tag 'Auth', type: 'button', name: :gitlab_auth, id: 'gitlab_auth' %>
+<div id="auth_status" class="flash"></div>
 </fieldset>
 <fieldset class="box tabular"><legend>Gitlab Project</legend>
 <p><%= label_tag :gitlab_name, l(:field_name) %><%= text_field_tag :gitlab_name, '', required: true, size: 60 %></p>
