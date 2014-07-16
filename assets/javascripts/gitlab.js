@@ -8,7 +8,7 @@ $(document).ready(function(){
 			.done(function(data){
 				gitlab = data;
 				$('#auth_status').empty().append("Logged in as " + gitlab.username + ".").removeClass("error notice").addClass("notice").show();
-				$('#gitlab_fieldset').show();
+				$('#gitlab_fieldset').slideDown();
 			})
 			.fail(function(data){
 				gitlab = {};
