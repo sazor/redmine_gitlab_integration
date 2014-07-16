@@ -9,4 +9,6 @@ fieldset.tabular p label.right-radio{
 #auth_status{
 	display: none;
 }
-
+#gitlab_fieldset{
+	display: none;
+}

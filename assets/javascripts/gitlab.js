@@ -7,11 +7,13 @@ $(document).ready(function(){
 		$.post(url + '/session', { login: login, password: pass })
 			.done(function(data){
 				gitlab = data;
-				$('#auth_status').empty().append("Successful authorization!").removeClass("error notice").addClass("notice").show();
+				$('#auth_status').empty().append("Logged in as " + gitlab.username + ".").removeClass("error notice").addClass("notice").show();
+				$('#gitlab_fieldset').show();
 			})
 			.fail(function(data){
 				gitlab = {};
 				$('#auth_status').empty().append("Authorization failed!").removeClass("error notice").addClass("error").show();
+				$('#gitlab_fieldset').hide();
 			});
 	});
 });
