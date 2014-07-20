@@ -1,9 +1,11 @@
 Redmine::Plugin.register :gitlab_int do
   name 'Gitlab Integration'
   author 'Andrew Kozlov'
-  description 'This plugin create redmine and gitlab project at the same time.'
+  description 'A plugin for close warm relations between Redmine and Gitlab.'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/Sazor/redmine_gitlab_integration'
+  author_url 'https://github.com/Sazor'
   settings :default => {'empty' => true}, :partial => 'settings/gitlab_int_settings'
+  permission :git_lab_repositories, { :git_lab_repositories => :index }, :public => true
+  menu :project_menu, :git_lab_repositories, { :controller => 'git_lab_repositories', :action => 'index' }, :caption => 'GitLabRepository', :after => :activity, :param => :project_id
 end
