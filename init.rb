@@ -1,3 +1,7 @@
+Rails.application.config.to_prepare do
+  Project.send(:include, GitlabInt::ProjectPatch)
+end
+
 Redmine::Plugin.register :gitlab_int do
   name 'Gitlab Integration'
   author 'Andrew Kozlov'
@@ -9,3 +13,4 @@ Redmine::Plugin.register :gitlab_int do
   permission :git_lab_repositories, { :git_lab_repositories => :index }, :public => true
   menu :project_menu, :git_lab_repositories, { :controller => 'git_lab_repositories', :action => 'index' }, :caption => 'GitLabRepository', :after => :activity, :param => :project_id
 end
+
