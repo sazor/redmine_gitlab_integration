@@ -1,0 +1,21 @@
+<fieldset class="box tabular"><legend>Gitlab Auth</legend>
+<p><%= label_tag :gitlab_login, "Login" %><%= text_field_tag :gitlab_login, '' %></p>
+<p><%= label_tag :gitlab_pass, "Password" %><%= password_field_tag :gitlab_pass, '' %></p>
+<%= hidden_field_tag 'gitlab_url', Setting.plugin_gitlab_int['gitlab_url'] %>
+<%= button_tag 'Log In', type: 'button', name: :gitlab_auth, id: 'gitlab_auth' %>
+<div id="auth_status" class="flash"></div>
+</fieldset>
+<fieldset class="box tabular" id="gitlab_fieldset"><legend>Gitlab Project</legend>
+<p><%= label_tag :gitlab_name, l(:field_name) %><%= text_field_tag 'project[gitlab_name]', '', size: 60 %></p>
+<p><%= label_tag :gitlab_description, l(:field_description) %><%= text_area_tag 'project[gitlab_description]', '',  rows: 8 %></p>
+<p>
+<%= label_tag :visibility, l(:visibility_level) %><br/>
+<%= radio_button_tag 'project[visibility]', 0, true, class: "right-radio" %>
+<%= label_tag :visibility_private, l(:visibility_private), class: "right-radio" %><br/>
+<%= radio_button_tag 'project[visibility]', 10, false, class: "right-radio" %>
+<%= label_tag :visibility_internal, l(:visibility_internal), class: "right-radio" %><br/>
+<%= radio_button_tag 'project[visibility]', 20, false, class: "right-radio" %>
+<%= label_tag :visibility_public, l(:visibility_public), class: "right-radio" %>
+<%= hidden_field_tag 'project[gitlab_token]', '' %>
+</p>
+</fieldset>

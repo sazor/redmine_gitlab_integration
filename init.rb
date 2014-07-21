@@ -1,3 +1,5 @@
+require 'gitlab_int/view_hooks'
+
 Rails.application.config.to_prepare do
   Project.send(:include, GitlabInt::ProjectPatch)
 end
