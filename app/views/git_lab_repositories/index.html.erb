@@ -1,1 +1,5 @@
-<h2>GitLabRepositoriesController#index</h2>
+<h2>GitLabRepositories</h2>
+<% @repositories.each do |r| %>
+	<%= link_to r.title, r.url %>
+	<br/>
+<% end %>
