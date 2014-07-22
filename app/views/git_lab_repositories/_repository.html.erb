@@ -1,0 +1,5 @@
+<div class='git_holder'>
+		<button class='url_btn ssh_btn active' id='<%= btn_id("ssh", repository.id) %>' data-clone='<%= ssh_url(repository.url) %>'>SSH</button>
+		<button class='url_btn http_btn' id='<%= btn_id("http", repository.id) %>' data-clone='<%= repository.url %>'>HTTP</button>
+	<input class='project_clone' id='<%= project_clone_id(repository.id) %>' name="project_clone" readonly="readonly" type="text" value="<%= ssh_url(repository.url) %>" autocomplete="off"/>
+</div>

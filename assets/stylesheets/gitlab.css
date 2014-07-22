@@ -12,3 +12,38 @@ fieldset.tabular p label.right-radio{
 #gitlab_fieldset{
 	display: none;
 }
+.git_holder{
+}
+.url_btn{
+	font-weight: bold;
+	margin-right: -1px;
+	border: 1px solid #628db6;
+	padding: 6px 9px;
+	display: inline-block;
+	cursor:  pointer;
+	float: left;
+	background-color: #fff;
+	color: #555;
+}
+.url_btn.active{
+	color: #fff;
+	background-color: #628db6;
+}
+.url_btn.active:hover{
+	color: #fff;
+	background-color: #628db6;
+}
+.url_btn:hover{
+	background-color: #759fcf;
+	color: #fff;
+}
+.project_clone{
+	background: none repeat scroll 0 0 #fafafa;
+	cursor: auto;
+	border: 1px solid #628db6;
+	padding: 7px 9px;
+	font-family: "Menlo","Liberation Mono","Consolas","Courier New","andale mono","lucida console",monospace;
+	color: #555555;
+	font-size: 13px;
+	width: 40%;
+}
