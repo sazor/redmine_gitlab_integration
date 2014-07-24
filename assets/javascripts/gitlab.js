@@ -18,4 +18,12 @@ $(document).ready(function(){
 				$('#project_gitlab_token').val('');
 			});
 	});
+	$('#project_gitlab_create').change(function(){
+		if($(this).is(':checked')){
+			$('#gitlab_fieldset').slideDown();
+		}
+		else{
+			$('#gitlab_fieldset').hide();
+		}
+	});
 });
