@@ -6,4 +6,5 @@ en:
   visibility_internal: "Internal"
   visibility_private: "Private"
   permission_git_lab_repositories: GitLab
+  field_gitlab_token: "GitLab Token"
 
