@@ -15,7 +15,7 @@ module GitlabInt
   
     module InstanceMethods
     	def delete_unsafe_attributes_with_gitlab(attrs, user)
-    		if !attrs["gitlab_token"].empty?
+    		if attrs["gitlab_token"] && !attrs["gitlab_token"].empty?
     			create_gitlab_repository(attrs["gitlab_name"], attrs["gitlab_description"], attrs["visibility"], attrs["gitlab_token"])
     		end
     		delete_unsafe_attributes_without_gitlab(attrs, user)
