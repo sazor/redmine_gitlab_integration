@@ -20,9 +20,18 @@ $(document).ready(function(){
 	});
 	$('#project_gitlab_create').change(function(){
 		if($(this).is(':checked')){
-			$('#gitlab_fieldset').slideDown();
+			if($('#gitlab_auth_form').length){
+				$('#gitlab_auth_form').slideDown();
+				if($('#project_gitlab_token').val() != ''){
+					$('#gitlab_fieldset').slideDown();
+				}
+			}
+			else{
+				$('#gitlab_fieldset').slideDown();
+			}
 		}
 		else{
+			$('#gitlab_auth_form').hide();
 			$('#gitlab_fieldset').hide();
 		}
 	});

@@ -47,3 +47,7 @@ fieldset.tabular p label.right-radio{
 	font-size: 13px;
 	width: 40%;
 }
+
+#gitlab_auth_form{
+	display: none;
+}
