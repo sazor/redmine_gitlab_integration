@@ -46,8 +46,17 @@ fieldset.tabular p label.right-radio{
 	color: #555555;
 	font-size: 13px;
 	width: 40%;
+	margin-top: -15px;
 }
 
 #gitlab_auth_form{
 	display: none;
+}
+
+.delete_btn{
+	color: #41678b;
+}
+
+.delete_btn:hover{
+	text-decoration: none;
 }

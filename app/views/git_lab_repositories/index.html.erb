@@ -1,5 +1,5 @@
 <h2>GitLab</h2>
-<%= render partial: "repository", collection: @repositories %>
+<%= render partial: "repository", collection: @repositories, locals: { project: @project.id } %>
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'gitlab_int' %>
 <% end %>
