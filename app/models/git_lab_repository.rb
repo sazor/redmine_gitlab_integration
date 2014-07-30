@@ -4,8 +4,7 @@ class GitLabRepository < ActiveRecord::Base
   include GitlabInt::GitlabMethods
 
   def smart_attributes=(attrs)
-  	self.title = attrs[:title]
-  	self.url = get_url gitlab_create(attrs)
+  	self.url = attrs[:url] || (get_url gitlab_create(attrs))
   end
 
   private

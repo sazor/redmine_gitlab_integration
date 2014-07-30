@@ -37,7 +37,7 @@ fieldset.tabular p label.right-radio{
 	background-color: #759fcf;
 	color: #fff;
 }
-.project_clone{
+.project_clone, #repository_url{
 	background: none repeat scroll 0 0 #fafafa;
 	cursor: auto;
 	border: 1px solid #628db6;
@@ -53,10 +53,33 @@ fieldset.tabular p label.right-radio{
 	display: none;
 }
 
-.delete_btn{
-	color: #41678b;
+a.delete_btn, a.close_btn{
+	cursor: pointer;
+	color: #169;
+	padding-left: 5px;
 }
 
-.delete_btn:hover{
+a.delete_btn:hover, a.close_btn:hover{
+	cursor: pointer;
+	color: #ff4136;
 	text-decoration: none;
+}
+
+a.add_btn, a.approve_btn{
+	cursor: pointer;
+	color: #169;
+}
+
+a.add_btn:hover, a.approve_btn:hover{
+	color: #2ecc40;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#add_repository{
+	padding-top: 10px;
+}
+
+.add_repository_form{
+	display: none;
 }

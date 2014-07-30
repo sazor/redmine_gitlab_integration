@@ -7,4 +7,16 @@ $(document).ready(function(){
 	$(".project_clone").click(function () {
   	$(this).select();
 	});
+	$('.add_btn').click(function(){
+		$(this).hide();
+		$('.add_repository_form').show();
+	});
+	$('.close_btn').click(function(){
+		$('.add_btn').show();
+		$('.add_repository_form').hide();
+		$('#repository_url').val('');
+	});
+	$('.approve_btn').click(function(){
+		$('.add_repository_form').submit();
+	});
 });
