@@ -19,5 +19,7 @@ For now plugin works only with Gitlab.
 
 ## Usage
 Set url of gitlab repository in plugin setting (without ending slash).
+
 In Gitlab account settings you can find your private token and copy it to Redmine account. Otherwise you`ll have to log in before gitlab project creating and you will not be able to add new repositories to project.
+
 If you want Gitlab page in your project you should check Gitlab in Modules list. You can create gitlab repository without it,  but you will not be able to see it in Redmine.
