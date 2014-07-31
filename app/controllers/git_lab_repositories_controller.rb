@@ -21,9 +21,9 @@ class GitLabRepositoriesController < ApplicationController
 		respond_to do |format|
 			if @repository.save
 				@project.git_lab_repositories << @repository
-				format.html { redirect_to git_lab_url(@project.id), notice: 'Repository was successfully connected.' }
+				format.html { redirect_to git_lab_url(@project.id), notice: 'Repository was successfully added.' }
 			else
-				format.html { redirect_to git_lab_url(@project.id), notice: 'Errors while connecting repository!' }
+				format.html { redirect_to git_lab_url(@project.id), notice: 'Errors while adding repository!' }
 			end
 		end
 	end
