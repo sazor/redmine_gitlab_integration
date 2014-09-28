@@ -26,8 +26,10 @@ module GitlabInt
 			repo_ids.each do |id|
 				if op == :add
 					gitlab.add_team_member(id, user.id, ROLES[role_id])
-				else
+				elsif op == :remove
 					gitlab.remove_team_member(id, user.id)
+				else
+					gitlab.edit_team_member(id, user.id, ROLES[role_id])
 				end
 			end
 		end
@@ -38,6 +40,10 @@ module GitlabInt
 
 		def gitlab_remove_member(options={})
 			gitlab_member(options, :remove)
+		end
+
+		def gitlab_edit_member(options={})
+			gitlab_member(options, :edit)
 		end
 
 		def gitlab_configure(token)
