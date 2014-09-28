@@ -1,6 +1,6 @@
 <% if ['new', 'create'].include? controller.action_name %>
 	<p><%= label_tag 'project[gitlab_create]', 'Gitlab Repository' %><%= check_box_tag 'project[gitlab_create]', 'true', false %></p>
-	<% if User.current.gitlab_token.empty? %>
+	<% if User.current.gitlab_token && User.current.gitlab_token.empty? %>
 		<fieldset class="box tabular" id="gitlab_auth_form"><legend>Gitlab Auth</legend>
 		<p><%= label_tag :gitlab_login, "Login" %><%= text_field_tag :gitlab_login, '' %></p>
 		<p><%= label_tag :gitlab_pass, "Password" %><%= password_field_tag :gitlab_pass, '' %></p>
