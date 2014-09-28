@@ -8,19 +8,23 @@
 	font-weight: normal;
 	font-style: normal;
 }
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
-	font-family: "Flaticon";
-  font-size: 30px;
-	font-style: normal;
-}.flaticon-add:before {
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 30px;
+font-style: normal;
+}.flaticon-accept:before {
 	content: "\e000";
 }
-.flaticon-approve:before {
+.flaticon-add:before {
 	content: "\e001";
 }
 .flaticon-close:before {
 	content: "\e002";
 }
-.flaticon-minus:before {
+.flaticon-four:before {
 	content: "\e003";
+}
+.flaticon-prohibition:before {
+	content: "\e004";
 }

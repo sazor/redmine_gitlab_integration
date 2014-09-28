@@ -4,13 +4,23 @@ class GitLabRepository < ActiveRecord::Base
   include GitlabInt::GitlabMethods
 
   def smart_attributes=(attrs)
-  	self.url = attrs[:url] || (get_url gitlab_create(attrs))
+    if attrs[:url] 
+      self.url = attrs[:url] 
+    else
+      glp = gitlab_create(attrs)
+      self.url = get_url_of glp
+      self.gitlab_id = get_id_of glp
+    end
   end
 
   private
 
-  def get_url(obj)
+  def get_url_of(obj)
   	replace_localhost(obj.to_h['http_url_to_repo'])
+  end
+
+  def get_id_of(obj)
+    obj.to_h['id']
   end
   
   def replace_localhost(str)

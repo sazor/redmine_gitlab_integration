@@ -10,5 +10,9 @@ module GitlabInt
 		def gitlab_configure(token)
 			Gitlab.client(endpoint: (Setting.plugin_gitlab_int['gitlab_url'] + '/api/v3'), private_token: token)
 		end
+
+		def gitlab_add_member(options={})
+			gitlab = gitlab_configure(attrs[:token])
+		end
 	end
 end
