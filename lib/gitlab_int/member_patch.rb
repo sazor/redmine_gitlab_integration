@@ -13,7 +13,8 @@ module GitlabInt
 
 		module InstanceMethods
 			def gitlab_module_enabled_and_token_exists?
-				self.project.module_enabled?("GitLab") && User.current.gitlab_token && !User.current.gitlab_token.empty?
+				(self.project.module_enabled?("GitLab") && Setting.plugin_gitlab_int['gitlab_members_sync'] == "true" &&
+										  User.current.gitlab_token && !User.current.gitlab_token.empty?)
 			end
 
 			def add_member_in_gitlab

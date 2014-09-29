@@ -1,4 +1,7 @@
 <p>
   <label for="settings_gitlab_url">Gitlab Url</label>
   <%= text_field_tag 'settings[gitlab_url]', @settings['gitlab_url'] %>
+  <br/>
+  <label for="settings_gitlab_members_sync">Project`s members synchronization(LDAP only)</label>
+  <%= check_box_tag 'settings[gitlab_members_sync]', 'true', @settings['gitlab_members_sync'] %></p>
 </p>
