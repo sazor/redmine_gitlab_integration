@@ -13,14 +13,18 @@ module GitlabInt
 		module InstanceMethods
 			include GitlabMethods
 			def gitlab_module_enabled_and_token_exists?
-				(self.project.module_enabled?("GitLab") && Setting.plugin_gitlab_int['gitlab_members_sync'] == "true" &&
+				(project.module_enabled?("GitLab") && Setting.plugin_gitlab_int['gitlab_members_sync'] == "true" &&
 										  User.current.gitlab_token && !User.current.gitlab_token.empty?)
 			end
 
 			def member_in_gitlab(op)
-				repo_ids = self.project.git_lab_repositories.map(&:gitlab_id).compact
-				role = (op == :add) ? self.member_roles.first.role_id : self.member_roles.last.role_id
-				gitlab_member(login: self.user.login, repositories: repo_ids, token: User.current.gitlab_token, role: role, op: op)
+				repo_ids = project.git_lab_repositories.map(&:gitlab_id).compact
+				role = case op
+					   when :add  then member_roles.first.role_id
+					   when :edit then member_roles.last.role_id
+					   else nil
+					   end
+				gitlab_member(login: user.login, repositories: repo_ids, token: User.current.gitlab_token, role: role, op: op)
 			end
 		end
 	end
