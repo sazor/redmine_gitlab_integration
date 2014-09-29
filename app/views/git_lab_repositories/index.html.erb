@@ -1,4 +1,5 @@
 <h2>GitLab</h2>
+<a href="<%= Setting.plugin_gitlab_int['gitlab_url'] %>" target="_blank"><h4>Open in new tab</h4></a>
 <%= render partial: "repository", collection: @repositories, locals: { project: @project.id } %>
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'gitlab_int' %>
