@@ -17,7 +17,7 @@ class GitLabRepositoriesController < ApplicationController
 
 	def create
 		@repository = GitLabRepository.new
-		@repository.smart_attributes = params # set attributes and optionally create repository in gitlab 
+		@repository.smart_attributes = params.merge({ project_id: @project.id }) # set attributes and optionally create repository in gitlab 
 		respond_to do |format|
 			if @repository.save
 				@project.git_lab_repositories << @repository # add repository to project

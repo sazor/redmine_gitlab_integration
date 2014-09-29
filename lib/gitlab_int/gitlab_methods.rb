@@ -34,6 +34,17 @@ module GitlabInt
 			end
 		end
 
+		def gitlab_add_members(options={})
+			members, repo_id = options[:members], options[:repository]
+			gitlab = gitlab_configure(options[:token])
+			# There is no searching by login, so we have to do it manually
+			all_users = gitlab.users
+			members.each do |member|
+				user = all_users.bsearch { |u| u.to_h['username'] == member[:login] }
+				gitlab.add_team_member(repo_id, user.id, ROLES[member[:role]])
+			end
+		end
+
 		def gitlab_token_valid?(token)
 			begin
 				gitlab_configure(token).user

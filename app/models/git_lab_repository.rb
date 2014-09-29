@@ -13,6 +13,8 @@ class GitLabRepository < ActiveRecord::Base
       glp = gitlab_create(attrs) # create repository in gitlab
       self.url = get_url_of glp
       self.gitlab_id = get_id_of glp # repository id in gitlab
+      members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
+      gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
     end
   end
 
