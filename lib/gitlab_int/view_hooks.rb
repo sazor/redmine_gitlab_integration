@@ -1,4 +1,4 @@
-module GitlabInt
+module RedmineGitlabIntegration
   module GitlabInt
     class Hooks  < Redmine::Hook::ViewListener
       render_on(:view_projects_form, partial: 'git_lab_repositories/gitlab')

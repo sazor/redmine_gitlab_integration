@@ -13,7 +13,7 @@ module GitlabInt
 		module InstanceMethods
 			include GitlabMethods
 			def gitlab_module_enabled_and_token_exists?
-				(project.module_enabled?("GitLab") && Setting.plugin_gitlab_int['gitlab_members_sync'] == "true" &&
+				(project.module_enabled?("GitLab") && Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == "true" &&
 										  User.current.gitlab_token && !User.current.gitlab_token.empty?)
 			end
 

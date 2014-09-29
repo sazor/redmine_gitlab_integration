@@ -27,6 +27,6 @@ class GitLabRepository < ActiveRecord::Base
   end
   
   def replace_localhost(str)
-  	str.gsub('http://localhost', Setting.plugin_gitlab_int['gitlab_url']) # if redmine and gitlab are hosted on same server
+  	str.gsub('http://localhost', Setting.plugin_redmine_gitlab_integration['gitlab_url']) # if redmine and gitlab are hosted on same server
   end
 end

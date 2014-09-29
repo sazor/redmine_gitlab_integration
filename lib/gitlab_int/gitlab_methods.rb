@@ -43,7 +43,7 @@ module GitlabInt
 		end
 
 		def gitlab_configure(token)
-			Gitlab.client(endpoint: (Setting.plugin_gitlab_int['gitlab_url'] + '/api/v3'), private_token: token)
+			Gitlab.client(endpoint: (Setting.plugin_redmine_gitlab_integration['gitlab_url'] + '/api/v3'), private_token: token)
 		end
 	end
 end
