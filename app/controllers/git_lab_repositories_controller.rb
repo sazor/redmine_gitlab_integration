@@ -17,9 +17,7 @@ class GitLabRepositoriesController < ApplicationController
 
 	def create
 		@repository = GitLabRepository.new
-		attrs = (params[:repository_url] ? { url: params[:repository_url], token: User.current.gitlab_token } 
-										: params.merge({ token: User.current.gitlab_token }) )
-		@repository.smart_attributes = attrs
+		@repository.smart_attributes = params
 		respond_to do |format|
 			if @repository.save
 				@project.git_lab_repositories << @repository

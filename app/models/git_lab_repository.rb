@@ -4,9 +4,10 @@ class GitLabRepository < ActiveRecord::Base
   include GitlabInt::GitlabMethods
 
   def smart_attributes=(attrs)
-    if attrs[:url] 
-      self.url = attrs[:url] 
+    if attrs[:repository_url] 
+      url = attrs[:repository_url] 
     else
+      attrs[:token] = User.current.gitlab_token
       glp = gitlab_create(attrs)
       self.url = get_url_of glp
       self.gitlab_id = get_id_of glp
