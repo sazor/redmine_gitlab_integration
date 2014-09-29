@@ -6,10 +6,7 @@ fieldset.tabular p label.right-radio{
     margin-left: auto;
     text-align: left;
 }
-#auth_status{
-	display: none;
-}
-#gitlab_fieldset, #form_gitlab_create{
+#gitlab_fieldset, #form_gitlab_create, #auth_status, .add_repository_form{
 	display: none;
 }
 .git_holder{
@@ -51,38 +48,29 @@ fieldset.tabular p label.right-radio{
 	margin-top: -19px;
 	margin-left: 1px;
 }
-
 #gitlab_auth_form{
 	display: none;
 }
-
 a.delete_btn, a.close_btn{
 	cursor: pointer;
 	color: #169;
 	padding-left: 5px;
 }
-
 a.delete_btn:hover, a.close_btn:hover{
 	cursor: pointer;
 	color: #ff4136;
 	text-decoration: none;
 }
-
 a.add_btn, a.approve_btn, a.four_btn{
 	cursor: pointer;
 	color: #169;
 }
-
 a.add_btn:hover, a.approve_btn:hover, a.four_btn:hover{
 	color: #2ecc40;
 	text-decoration: none;
 	cursor: pointer;
 }
-
 #add_repository{
 	padding-top: 10px;
 }
 
-.add_repository_form{
-	display: none;
-}

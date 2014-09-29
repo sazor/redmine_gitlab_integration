@@ -4,4 +4,16 @@ ru:
   visibility_private: "Частный"
   visibility_internal: "Внутренний"
   permission_git_lab_repositories: GitLab
-
+  field_gitlab_token: "GitLab Токен"
+  gitlab_create_success: "Репозиторий был успешно добавлен."
+  gitlab_create_error: "Возникли проблемы с созданием репозитория. Это может быть вызвано некорректно заполненными полями данных или проблемами с доступом к gitlab."
+  gitlab_project_legend: "Gitlab"
+  gitlab_repository_checkbox: "Gitlab Репозиторий"
+  gitlab_login: "Логин"
+  gitlab_password: "Пароль"
+  gitlab_log_in_btn: "Войти"
+  gitlab_auth_legend: "Gitlab Аутенфикация"
+  gitlab_confirm: "Вы уверены?"
+  gitlab_open: "Открыть в новой вкладке"
+  gitlab_settings_members_sync: "Синхронизация участников проекта (LDAP)"
+  gitlab_token_error: "не корректен. Пожалуйста проверьте ваш аккаунт на gitlab."

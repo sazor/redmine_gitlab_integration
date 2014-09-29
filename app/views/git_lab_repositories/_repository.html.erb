@@ -2,5 +2,5 @@
 		<button class='url_btn ssh_btn active' id='<%= btn_id("ssh", repository.id) %>' data-clone='<%= ssh_url(repository.url) %>'>SSH</button>
 		<button class='url_btn http_btn' id='<%= btn_id("http", repository.id) %>' data-clone='<%= repository.url %>'>HTTP</button>
 	<input class='project_clone' id='<%= project_clone_id(repository.id) %>' name="project_clone" readonly="readonly" type="text" value="<%= ssh_url(repository.url) %>" autocomplete="off"/>
-	<%= link_to content_tag("span", ""), git_lab_repository_destroy_path(project, repository.id), confirm: "Are you sure?", method: :delete, class: "flaticon-close delete_btn" %>
+	<%= link_to content_tag("span", ""), git_lab_repository_destroy_path(project, repository.id), confirm: t(:gitlab_confirm), method: :delete, class: "flaticon-close delete_btn" %>
 </div>

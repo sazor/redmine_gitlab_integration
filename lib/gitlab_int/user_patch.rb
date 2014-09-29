@@ -11,7 +11,7 @@ module GitlabInt
     	include GitlabMethods
     	def gitlab_token_is_valid
     		unless gitlab_token_valid? gitlab_token
-    			errors.add(:gitlab_token, "isn`t valid. Please check it in your Gitlab account.")
+    			errors.add(:gitlab_token, t(:gitlab_token_error))
     		end
     	end
     end

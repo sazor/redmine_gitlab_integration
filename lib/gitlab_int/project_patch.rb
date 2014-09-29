@@ -31,7 +31,7 @@ module GitlabInt
       end
 
       def gitlab_errors?
-          errors.add(:base, "Problems with Gitlab Repository. It can be caused by wrong field input, invalid private token or problems with gitlab server.") if @gitlab_err
+          errors.add(:base, t(:gitlab_creation_error)) if @gitlab_err
       end
     end
 	end

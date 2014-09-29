@@ -1,10 +1,20 @@
-# English strings go here for Rails i18n
 en:
-  # my_label: "My label"
   visibility_level: "Visibility Level"
   visibility_public: "Public"
   visibility_internal: "Internal"
   visibility_private: "Private"
   permission_git_lab_repositories: GitLab
   field_gitlab_token: "GitLab Token"
+  gitlab_create_success: "Repository was successfully added."
+  gitlab_create_error: "Problems with Gitlab Repository. It can be caused by wrong field input or problems with gitlab server."
+  gitlab_project_legend: "Gitlab"
+  gitlab_repository_checkbox: "Gitlab Repository"
+  gitlab_login: "Login"
+  gitlab_password: "Password"
+  gitlab_log_in_btn: "Log in"
+  gitlab_auth_legend: "Gitlab Auth"
+  gitlab_confirm: "Are you sure?"
+  gitlab_open: "Open in new tab"
+  gitlab_settings_members_sync: "Project members synchronization (LDAP)"
+  gitlab_token_error: "isn`t valid. Please check it in your Gitlab account."
 

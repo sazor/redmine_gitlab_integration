@@ -1,15 +1,15 @@
 <%= form_tag git_lab_repository_create_path(project), { id: 'form_gitlab_create' } do %>
-	<fieldset class="box tabular"><legend>Gitlab Project</legend>
-	<p><%= label_tag :title, l(:field_name) %><%= text_field_tag :title, '', size: 60 %></p>
-	<p><%= label_tag :description, l(:field_description) %><%= text_area_tag :description, '',  rows: 8 %></p>
+	<fieldset class="box tabular"><legend><%= t(:gitlab_project_legend) %></legend>
+	<p><%= label_tag :title, t(:field_name) %><%= text_field_tag :title, '', size: 60 %></p>
+	<p><%= label_tag :description, t(:field_description) %><%= text_area_tag :description, '',  rows: 8 %></p>
 	<p>
-	<%= label_tag :visibility, l(:visibility_level) %><br/>
+	<%= label_tag :visibility, t(:visibility_level) %><br/>
 	<%= radio_button_tag :visibility, 0, true, class: "right-radio" %>
-	<%= label_tag 'visibility_0', l(:visibility_private), class: "right-radio" %><br/>
+	<%= label_tag 'visibility_0', t(:visibility_private), class: "right-radio" %><br/>
 	<%= radio_button_tag :visibility, 10, false, class: "right-radio" %>
-	<%= label_tag 'visibility_10', l(:visibility_internal), class: "right-radio" %><br/>
+	<%= label_tag 'visibility_10', t(:visibility_internal), class: "right-radio" %><br/>
 	<%= radio_button_tag :visibility, 20, false, class: "right-radio" %>
-	<%= label_tag 'visibility_20', l(:visibility_public), class: "right-radio" %>
+	<%= label_tag 'visibility_20', t(:visibility_public), class: "right-radio" %>
 	</p>
 	</fieldset>
 	<a class="flaticon-accept approve_btn"></a>

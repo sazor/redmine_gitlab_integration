@@ -17,13 +17,13 @@ class GitLabRepositoriesController < ApplicationController
 
 	def create
 		@repository = GitLabRepository.new
-		@repository.smart_attributes = params
+		@repository.smart_attributes = params # set attributes and optionally create repository in gitlab 
 		respond_to do |format|
 			if @repository.save
-				@project.git_lab_repositories << @repository
-				format.html { redirect_to git_lab_url(@project.id), notice: 'Repository was successfully added.' }
+				@project.git_lab_repositories << @repository # add repository to project
+				format.html { redirect_to git_lab_url(@project.id), notice: t(:gitlab_create_success) }
 			else
-				format.html { redirect_to git_lab_url(@project.id), notice: 'Errors while adding repository!' }
+				format.html { redirect_to git_lab_url(@project.id), notice: t(:gitlab_create_error) }
 			end
 		end
 	end
