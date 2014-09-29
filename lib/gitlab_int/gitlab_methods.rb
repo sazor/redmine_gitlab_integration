@@ -16,8 +16,8 @@ module GitlabInt
 			gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: attrs[:visibility])
 		end
 
-		def gitlab_member(options={}, op)
-			login, repo_ids, role_id = options[:login], options[:repositories], options[:role]
+		def gitlab_member(options={})
+			login, repo_ids, role_id, op = options[:login], options[:repositories], options[:role], options[:op]
 			gitlab = gitlab_configure(options[:token])
 			# There is no searching by login, so we have to do it manually
 			all_users = gitlab.users
@@ -32,18 +32,6 @@ module GitlabInt
 					gitlab.edit_team_member(id, user.id, ROLES[role_id])
 				end
 			end
-		end
-
-		def gitlab_add_member(options={})
-			gitlab_member(options, :add)
-		end
-
-		def gitlab_remove_member(options={})
-			gitlab_member(options, :remove)
-		end
-
-		def gitlab_edit_member(options={})
-			gitlab_member(options, :edit)
 		end
 
 		def gitlab_configure(token)

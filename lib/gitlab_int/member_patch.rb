@@ -5,9 +5,9 @@ module GitlabInt
 			base.send(:include, InstanceMethods)
 			base.class_eval do
 				# Patch only if module was enabled
-				after_save :add_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
-				before_destroy :remove_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
-				after_update :edit_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
+				after_save { member_in_gitlab(:add) if gitlab_module_enabled_and_token_exists? }
+				before_destroy { member_in_gitlab(:remove) if gitlab_module_enabled_and_token_exists? }
+				after_update { member_in_gitlab(:edit) if gitlab_module_enabled_and_token_exists? }
 			end
 		end
 
@@ -17,21 +17,10 @@ module GitlabInt
 										  User.current.gitlab_token && !User.current.gitlab_token.empty?)
 			end
 
-			def add_member_in_gitlab
+			def member_in_gitlab(op)
 				repo_ids = self.project.git_lab_repositories.map(&:gitlab_id).compact
-				role = self.member_roles.first.role_id
-				gitlab_add_member(login: self.user.login, repositories: repo_ids, token: User.current.gitlab_token, role: role)
-			end
-
-			def remove_member_in_gitlab
-				repo_ids = self.project.git_lab_repositories.map(&:gitlab_id).compact
-				gitlab_remove_member(login: self.user.login, repositories: repo_ids, token: User.current.gitlab_token)
-			end
-
-			def edit_member_in_gitlab
-				repo_ids = self.project.git_lab_repositories.map(&:gitlab_id).compact
-				role = self.member_roles.last.role_id
-				gitlab_edit_member(login: self.user.login, repositories: repo_ids, token: User.current.gitlab_token, role: role)
+				role = (op == :add) ? self.member_roles.first.role_id : self.member_roles.last.role_id
+				gitlab_member(login: self.user.login, repositories: repo_ids, token: User.current.gitlab_token, role: role, op: op)
 			end
 		end
 	end
