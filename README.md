@@ -12,6 +12,7 @@ For now plugin works only with Gitlab.
 	- By using their address (just add link)
 	- With repository creation (such as in redmine project creation)
 - Project members synchronization
+	- LDAP`s required.
 	- Add(remove) members and they will be added(removed) in all repositories connected with this project
 	- Role also is synchronized. But redmine has multirole system when in gitlab member has only one role, so add process uses first role and edit uses last role
 
