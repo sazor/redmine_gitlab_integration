@@ -1,6 +1,5 @@
 module GitlabInt
 	module MemberPatch
-		include GitlabMethods
 		def self.included(base)
 			base.send(:include, InstanceMethods)
 			base.class_eval do
@@ -12,6 +11,7 @@ module GitlabInt
 		end
 
 		module InstanceMethods
+			include GitlabMethods
 			def gitlab_module_enabled_and_token_exists?
 				(self.project.module_enabled?("GitLab") && Setting.plugin_gitlab_int['gitlab_members_sync'] == "true" &&
 										  User.current.gitlab_token && !User.current.gitlab_token.empty?)

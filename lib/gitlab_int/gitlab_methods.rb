@@ -34,6 +34,14 @@ module GitlabInt
 			end
 		end
 
+		def gitlab_token_valid?(token)
+			begin
+				gitlab_configure(token).user
+			rescue
+				false
+			end
+		end
+
 		def gitlab_configure(token)
 			Gitlab.client(endpoint: (Setting.plugin_gitlab_int['gitlab_url'] + '/api/v3'), private_token: token)
 		end
