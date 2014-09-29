@@ -1,6 +1,7 @@
 class GitLabRepository < ActiveRecord::Base
   unloadable
   belongs_to :project
+  validate :gitlab_repo_created?
   include GitlabInt::GitlabMethods
 
   def smart_attributes=(attrs)
@@ -8,17 +9,25 @@ class GitLabRepository < ActiveRecord::Base
       # Just add repository by url
       self.url = attrs[:repository_url] 
     else
-      # Create repository in gitlab and add it in redmine
-      attrs[:token] = User.current.gitlab_token # add token in attributes hash
-      glp = gitlab_create(attrs) # create repository in gitlab
-      self.url = get_url_of glp
-      self.gitlab_id = get_id_of glp # repository id in gitlab
-      members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
-      gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
+      begin
+        # Create repository in gitlab and add it in redmine
+        attrs[:token] = User.current.gitlab_token # add token in attributes hash
+        glp = gitlab_create(attrs) # create repository in gitlab
+        self.url = get_url_of glp
+        self.gitlab_id = get_id_of glp # repository id in gitlab
+        members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
+        gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
+      rescue
+        @gitlab_err = true
+      end
     end
   end
 
   private
+
+  def gitlab_repo_created?
+    errors.add(:base, I18n.t(:gitlab_creation_error)) if @gitlab_err
+  end
 
   def get_url_of(obj)
   	replace_localhost(obj.to_h['http_url_to_repo'])

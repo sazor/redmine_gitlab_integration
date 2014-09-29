@@ -73,4 +73,10 @@ a.add_btn:hover, a.approve_btn:hover, a.four_btn:hover{
 #add_repository{
 	padding-top: 10px;
 }
+.alert{
+  	background: url(../images/exclamation.png) 8px 50% no-repeat;
+  	background-color: #ffe3e3;
+  	border-color: #dd0000;
+  	color: #880000;
+}
 

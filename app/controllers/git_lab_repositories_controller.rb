@@ -23,7 +23,7 @@ class GitLabRepositoriesController < ApplicationController
 				@project.git_lab_repositories << @repository # add repository to project
 				format.html { redirect_to git_lab_url(@project.id), notice: t(:gitlab_create_success) }
 			else
-				format.html { redirect_to git_lab_url(@project.id), notice: t(:gitlab_create_error) }
+				format.html { redirect_to git_lab_url(@project.id), alert: t(:gitlab_create_error) }
 			end
 		end
 	end
