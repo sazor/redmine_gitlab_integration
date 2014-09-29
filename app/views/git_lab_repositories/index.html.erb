@@ -4,4 +4,12 @@
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'gitlab_int' %>
 <% end %>
-<div id="add_repository"><a class="flaticon-add add_btn"></a><%= render partial: "add_repository", locals: { project: @project.id } %></div>
+<% if User.current.gitlab_token && !User.current.gitlab_token.empty? %>
+	<div id="btns">
+		<a class="flaticon-add add_btn"></a>
+		<a class="flaticon-four four_btn"></a>
+	</div>
+	<div id="add_repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
+	<div id="create_repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
+<% end %>
+

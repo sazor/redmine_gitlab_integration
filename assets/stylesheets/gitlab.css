@@ -9,7 +9,7 @@ fieldset.tabular p label.right-radio{
 #auth_status{
 	display: none;
 }
-#gitlab_fieldset{
+#gitlab_fieldset, #form_gitlab_create{
 	display: none;
 }
 .git_holder{
@@ -68,12 +68,12 @@ a.delete_btn:hover, a.close_btn:hover{
 	text-decoration: none;
 }
 
-a.add_btn, a.approve_btn{
+a.add_btn, a.approve_btn, a.four_btn{
 	cursor: pointer;
 	color: #169;
 }
 
-a.add_btn:hover, a.approve_btn:hover{
+a.add_btn:hover, a.approve_btn:hover, a.four_btn:hover{
 	color: #2ecc40;
 	text-decoration: none;
 	cursor: pointer;

@@ -9,14 +9,31 @@ $(document).ready(function(){
 	});
 	$('.add_btn').click(function(){
 		$(this).hide();
+		$('.four_btn').hide();
 		$('.add_repository_form').show();
 	});
+	$('.four_btn').click(function(){
+		$(this).hide();
+		$('.add_btn').hide();
+		$('#form_gitlab_create').slideDown();
+	});
 	$('.close_btn').click(function(){
+		if($('#form_gitlab_create').css('display') == "none"){
+			$('.add_repository_form').hide();
+			$('#repository_url').val('');
+		}
+		else{
+			$('#form_gitlab_create').hide();
+		}
 		$('.add_btn').show();
-		$('.add_repository_form').hide();
-		$('#repository_url').val('');
+		$('.four_btn').show();
 	});
 	$('.approve_btn').click(function(){
-		$('.add_repository_form').submit();
+		if($('#form_gitlab_create').css('display') == "none"){
+			$('.add_repository_form').submit();
+		}
+		else{
+			$('#form_gitlab_create').submit();
+		}
 	});
 });
