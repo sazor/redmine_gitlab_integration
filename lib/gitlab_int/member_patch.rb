@@ -5,15 +5,15 @@ module GitlabInt
 			base.send(:include, InstanceMethods)
 			base.class_eval do
 				# Patch only if module was enabled
-				after_save :add_member_in_gitlab, if: :gitlab_module_enabled?
-				before_destroy :remove_member_in_gitlab, if: :gitlab_module_enabled?
-				after_update :edit_member_in_gitlab, if: :gitlab_module_enabled?
+				after_save :add_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
+				before_destroy :remove_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
+				after_update :edit_member_in_gitlab, if: :gitlab_module_enabled_and_token_exists?
 			end
 		end
 
 		module InstanceMethods
-			def gitlab_module_enabled?
-				self.project.module_enabled?("GitLab")
+			def gitlab_module_enabled_and_token_exists?
+				self.project.module_enabled?("GitLab") && User.current.gitlab_token && !User.current.gitlab_token.empty?
 			end
 
 			def add_member_in_gitlab
