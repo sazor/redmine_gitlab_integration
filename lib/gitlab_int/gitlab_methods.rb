@@ -21,7 +21,7 @@ module GitlabInt
 			gitlab = gitlab_configure(options[:token])
 			# There is no searching by login, so we have to do it manually
 			all_users = gitlab.users
-			user = all_users.bsearch { |u| u.to_h['username'] == login }
+			user = all_users.select { |u| u.username == login }.first
 			#  Each repository from our list
 			repo_ids.each do |id|
 				if op == :add
@@ -40,7 +40,7 @@ module GitlabInt
 			# There is no searching by login, so we have to do it manually
 			all_users = gitlab.users
 			members.each do |member|
-				user = all_users.bsearch { |u| u.to_h['username'] == member[:login] }
+				user = all_users.select { |u| u.to_h['username'] == member[:login] }.first
 				gitlab.add_team_member(repo_id, user.id, ROLES[member[:role]])
 			end
 		end

@@ -22,7 +22,7 @@ module GitlabInt
       def create_gitlab_repository(name, description, visibility, token)
         begin
         	glr = GitLabRepository.new
-        	glr.smart_attributes = { title: name, description: description, visibility: visibility, token: token }
+        	glr.smart_attributes = { title: name, description: description, visibility: visibility, token: token, context: :create_with_project }
         	glr.save
         	self.git_lab_repositories << glr
         rescue

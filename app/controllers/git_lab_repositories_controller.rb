@@ -17,7 +17,9 @@ class GitLabRepositoriesController < ApplicationController
 
 	def create
 		@repository = GitLabRepository.new
-		@repository.smart_attributes = params.merge({ project_id: @project.id }) # set attributes and optionally create repository in gitlab 
+		ext_hash = (params[:repository_url]) ? { context: :add_by_url }
+											 : { project_id: @project.id, context: :create_and_add_to_project }
+		@repository.smart_attributes = params.merge(ext_hash) # set attributes and optionally create repository in gitlab 
 		respond_to do |format|
 			if @repository.save
 				@project.git_lab_repositories << @repository # add repository to project
