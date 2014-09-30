@@ -10,4 +10,12 @@ module GitLabRepositoriesHelper
 	def project_clone_id(id)
 		"project_clone_#{id}"
 	end
+
+	def user_has_token?
+		User.current.gitlab_token && !User.current.gitlab_token.empty?
+	end
+
+	def user_allowed_to_add?
+		User.current.allowed_to?(:add_new_repositories, @project)
+	end
 end
