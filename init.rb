@@ -14,8 +14,9 @@ Redmine::Plugin.register :redmine_gitlab_integration do
   url 'https://github.com/Sazor/redmine_gitlab_integration'
   author_url 'https://github.com/Sazor'
   settings partial: 'settings/gitlab_int_settings'
-  menu :project_menu, :git_lab_repositories, { controller: 'git_lab_repositories', action: 'index' }, caption: 'GitLab', after: :activity, param: :project_id
   project_module 'GitLab' do
-    permission :git_lab_repositories, git_lab_repositories: :index
+    permission :access_to_gitlab_tab, { git_lab_repositories: :index }
+    permission :add_new_repositories, { git_lab_repositories: :create }
   end
+  menu :project_menu, :git_lab_repositories, { controller: 'git_lab_repositories', action: 'index' }, caption: 'GitLab', after: :activity, param: :project_id
 end

@@ -17,4 +17,3 @@ en:
   gitlab_open: "Open in new tab"
   gitlab_settings_members_sync: "Project members synchronization (LDAP)"
   gitlab_token_error: "isn`t valid. Please check it in your Gitlab account."
-

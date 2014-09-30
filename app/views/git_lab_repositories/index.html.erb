@@ -4,7 +4,7 @@
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'gitlab_int' %>
 <% end %>
-<% if User.current.gitlab_token && !User.current.gitlab_token.empty? %>
+<% if User.current.gitlab_token && !User.current.gitlab_token.empty? && User.current.allowed_to?(:add_new_repositories, @project) %>
 	<div id="btns">
 		<a class="flaticon-add add_btn"></a>
 		<a class="flaticon-four four_btn"></a>
