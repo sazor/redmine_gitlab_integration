@@ -10,8 +10,8 @@ module GitlabInt
     module InstanceMethods
     	include GitlabMethods
     	def gitlab_token_is_valid
-    		unless gitlab_token_valid? gitlab_token
-    			errors.add(:gitlab_token, t(:gitlab_token_error))
+        if(gitlab_token && !gitlab_token.empty? && !gitlab_token_valid?(gitlab_token))
+    			errors.add(:gitlab_token, "isn`t valid")
     		end
     	end
     end

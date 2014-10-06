@@ -2,6 +2,7 @@ class GitLabRepository < ActiveRecord::Base
   unloadable
   belongs_to :project
   validate :gitlab_repo_created?
+  before_destroy :destroy_repository
   include GitlabInt::GitlabMethods
 
   def smart_attributes=(attrs)
@@ -15,18 +16,22 @@ class GitLabRepository < ActiveRecord::Base
         self.url = get_url_of glp
         self.gitlab_id = get_id_of glp # repository id in gitlab
       when :create_and_add_to_project
-          # Create repository in gitlab and add it in redmine
-          attrs[:token] = User.current.gitlab_token
-          glp = gitlab_create(attrs) # create repository in gitlab
-          self.url = get_url_of glp
-          self.gitlab_id = get_id_of glp # repository id in gitlab
-          attrs[:token] = User.current.gitlab_token # add token in attributes hash
-          members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
-          gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
+        # Create repository in gitlab and add it in redmine
+        attrs[:token] = User.current.gitlab_token
+        glp = gitlab_create(attrs) # create repository in gitlab
+        self.url = get_url_of glp
+        self.gitlab_id = get_id_of glp # repository id in gitlab
+        attrs[:token] = User.current.gitlab_token # add token in attributes hash
+        members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
+        gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
       end 
     rescue
       @gitlab_err = true
     end
+  end
+
+  def destroy_repository
+    gitlab_destroy( {token: User.current.gitlab_token, id: self.gitlab_id} ) if self.gitlab_id
   end
 
   private

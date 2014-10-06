@@ -16,6 +16,11 @@ module GitlabInt
 			gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: attrs[:visibility])
 		end
 
+		def gitlab_destroy(attrs)
+			gitlab = gitlab_configure(attrs[:token])
+			gitlab.delete_project(attrs[:id])
+		end
+
 		def gitlab_member(options={})
 			login, repo_ids, role_id, op = options[:login], options[:repositories], options[:role], options[:op]
 			gitlab = gitlab_configure(options[:token])
