@@ -2,6 +2,11 @@
   <label for="settings_gitlab_url">Gitlab Url</label>
   <%= text_field_tag 'settings[gitlab_url]', @settings['gitlab_url'] %>
   <br/>
-  <label for="settings_gitlab_members_sync"><%= t(:gitlab_settings_members_sync) %></label>
-  <%= check_box_tag 'settings[gitlab_members_sync]', 'true', @settings['gitlab_members_sync'] %></p>
+  <%= label_tag 'settings[gitlab_members_sync]', "Project members synchronization" %>
+	<%= radio_button_tag 'settings[gitlab_members_sync]', "ldap", (@settings['gitlab_members_sync'] == "ldap"), class: "right-radio" %>
+	<%= label_tag 'settings[gitlab_members_sync]_ldap', "LDAP (only if Gitlab users count <= 100)", class: "right-radio" %><br/>
+	<%= radio_button_tag 'settings[gitlab_members_sync]', "token", (@settings['gitlab_members_sync'] == "token"), class: "right-radio" %>
+	<%= label_tag 'settings[gitlab_members_sync]_token', "Gitlab private tokens", class: "right-radio" %><br/>
+	<%= radio_button_tag 'settings[gitlab_members_sync]', "disabled", (@settings['gitlab_members_sync'] == "disabled"), class: "right-radio" %>
+	<%= label_tag 'settings[gitlab_members_sync]_disabled', "Disabled", class: "right-radio" %>
 </p>

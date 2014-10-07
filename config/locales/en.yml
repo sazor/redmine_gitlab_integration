@@ -15,5 +15,6 @@ en:
   gitlab_auth_legend: "Gitlab Auth"
   gitlab_confirm: "Are you sure?"
   gitlab_open: "Open in new tab"
-  gitlab_settings_members_sync: "Project members synchronization (LDAP)"
+  gitlab_settings_members_sync: "Project members synchronization (LDAP & Gitlab users count < 500)"
+  gitlab_settings_members_sync_no_ldap: "Project members synchronization (Tokens)"
   gitlab_token_error: "isn`t valid. Please check it in your Gitlab account."

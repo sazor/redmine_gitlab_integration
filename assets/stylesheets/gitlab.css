@@ -2,8 +2,8 @@ p input.right-radio[type="radio"]{
     float: left;
     clear: left;
 }
-fieldset.tabular p label.right-radio{
-    margin-left: auto;
+p label.right-radio{
+    margin-left: auto !important;
     text-align: left;
 }
 #gitlab_fieldset, #form_gitlab_create, #auth_status, .add_repository_form{
