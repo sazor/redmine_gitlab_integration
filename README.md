@@ -11,8 +11,9 @@ For now plugin works only with Gitlab.
 - Ability to remove and add new repositories in 'Gitlab' tab in project
 	- By using their address (just add link)
 	- With repository creation (such as in redmine project creation)
+	- Autoremove gitlab repository
 - Project members synchronization
-	- LDAP`s required.
+	- By LDAP(same usernames) or by gitlab token .
 	- Add(remove) members and they will be added(removed) in all repositories connected with this project
 	- Role also is synchronized. But redmine has multirole system when in gitlab member has only one role, so add process uses first role and edit uses last role
 
