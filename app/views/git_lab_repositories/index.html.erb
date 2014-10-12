@@ -2,7 +2,7 @@
 <a href="<%= Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>" target="_blank"><h4><%= t(:gitlab_open) %></h4></a>
 <%= render partial: "repository", collection: @repositories, locals: { project: @project.id } %>
 <% content_for :header_tags do %>
-    <%= javascript_include_tag 'repository', :plugin => 'gitlab_int' %>
+    <%= javascript_include_tag 'repository', :plugin => 'redmine_gitlab_integration' %>
 <% end %>
 <% if user_has_token? && user_allowed_to_add? %>
 	<div id="btns">

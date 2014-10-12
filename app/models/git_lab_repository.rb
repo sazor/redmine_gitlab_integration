@@ -10,7 +10,7 @@ class GitLabRepository < ActiveRecord::Base
       case attrs[:context]
       when :add_by_url
         # Just add repository by url
-        self.url = attrs[:repository_url] 
+        self.url = format_url attrs[:repository_url] 
       when :create_with_project
         glp = gitlab_create(attrs) # create repository in gitlab
         self.url = get_url_of glp
@@ -21,9 +21,10 @@ class GitLabRepository < ActiveRecord::Base
         glp = gitlab_create(attrs) # create repository in gitlab
         self.url = get_url_of glp
         self.gitlab_id = get_id_of glp # repository id in gitlab
-        attrs[:token] = User.current.gitlab_token # add token in attributes hash
-        members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
-        gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token])
+        if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] != "disabled"
+          members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
+          gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token]) unless members.empty?
+        end
       end 
     rescue
       @gitlab_err = true
@@ -31,10 +32,14 @@ class GitLabRepository < ActiveRecord::Base
   end
 
   def destroy_repository
-    gitlab_destroy( {token: User.current.gitlab_token, id: self.gitlab_id} ) if self.gitlab_id
+    gitlab_destroy( {token: User.current.gitlab_token, id: self.gitlab_id} ) if self.gitlab_id && Setting.plugin_redmine_gitlab_integration['gitlab_autoremove'] == "enabled"
   end
 
   private
+
+  def format_url(url)
+    url.gsub('git@', 'http://')
+  end
 
   def gitlab_repo_created?
     errors.add(:base, I18n.t(:gitlab_creation_error)) if @gitlab_err

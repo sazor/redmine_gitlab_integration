@@ -1,12 +1,14 @@
 <p>
-  <label for="settings_gitlab_url">Gitlab Url</label>
+  <%= label_tag 'settings_gitlab_url', "Gitlab Url" %>
   <%= text_field_tag 'settings[gitlab_url]', @settings['gitlab_url'] %>
   <br/>
   <%= label_tag 'settings[gitlab_members_sync]', "Project members synchronization" %>
 	<%= radio_button_tag 'settings[gitlab_members_sync]', "ldap", (@settings['gitlab_members_sync'] == "ldap"), class: "right-radio" %>
 	<%= label_tag 'settings[gitlab_members_sync]_ldap', "LDAP (only if Gitlab users count <= 100)", class: "right-radio" %><br/>
 	<%= radio_button_tag 'settings[gitlab_members_sync]', "token", (@settings['gitlab_members_sync'] == "token"), class: "right-radio" %>
-	<%= label_tag 'settings[gitlab_members_sync]_token', "Gitlab private tokens", class: "right-radio" %><br/>
+	<%= label_tag 'settings[gitlab_members_sync]_token', "gitlab private tokens", class: "right-radio" %><br/>
 	<%= radio_button_tag 'settings[gitlab_members_sync]', "disabled", (@settings['gitlab_members_sync'] == "disabled"), class: "right-radio" %>
-	<%= label_tag 'settings[gitlab_members_sync]_disabled', "Disabled", class: "right-radio" %>
+	<%= label_tag 'settings[gitlab_members_sync]_disabled', "disabled", class: "right-radio" %><br/><br/>
+	<%= label_tag 'settings_gitlab_autoremove', "Autoremove repository" %>
+  <%= check_box_tag 'settings[gitlab_autoremove]', 'enabled', (@settings['gitlab_autoremove'] == 'enabled') %>
 </p>
