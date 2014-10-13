@@ -1,5 +1,5 @@
 <%= form_tag git_lab_repository_create_path(project), class: "add_repository_form" do %>
-	<%= text_field_tag :repository_url %>
+	<%= text_field_tag :repository_url, '', placeholder: 'https://gitlab.com/user/repository.git' %>
 	<a class="flaticon-accept approve_btn"></a>
 	<a class="flaticon-prohibition close_btn"></a>
 <% end %>

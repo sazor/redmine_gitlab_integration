@@ -102,4 +102,22 @@ FactoryGirl.define do
 			project.enable_module! "GitLab"
 		end
 	end
+
+	factory :project_gamma, class: Project do
+		created_on Time.now
+		name "Project Gamma"
+		updated_on Time.now
+		id 102
+		description "This is test project"
+		homepage ""
+		is_public true
+		identifier "gamma"
+		parent_id nil
+		after(:create) do |project|
+			project.enable_module! "GitLab"
+			create(:repo_1, project: project)
+			create(:repo_2, project: project)
+			project.git_lab_repositories.last.destroy
+		end
+	end
 end

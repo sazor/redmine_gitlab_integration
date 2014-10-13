@@ -32,13 +32,24 @@ class GitLabRepositoriesControllerTest < ActionController::TestCase
 		project.destroy
 	end
 
-	test "add_repository_by_link" do
+	test "try_to_add_repository_by_invalid_link" do
 		project = create(:project_beta)
 		get :index, project_id: project.id
 		assert_response :success
 		assert_select "div.git_holder", 0
 		post :create, repository_url: "git@gitlab.com/sazor_test_admin/test1.git", project_id: project.id
 		assert_equal "http://gitlab.com/sazor_test_admin/test1.git", assigns[:repository].url
+		get :index, project_id: project.id
+		assert_select "div.git_holder", 0
+		project.destroy
+	end
+
+	test "add_repository_by_link" do
+		project = create(:project_beta)
+		get :index, project_id: project.id
+		assert_response :success
+		assert_select "div.git_holder", 0
+		post :create, repository_url: "https://gitlab.com/sazor_test_2/test_project_1.git", project_id: project.id
 		get :index, project_id: project.id
 		assert_select "div.git_holder", 1
 		project.destroy
