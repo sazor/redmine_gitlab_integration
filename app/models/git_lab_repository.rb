@@ -12,10 +12,6 @@ class GitLabRepository < ActiveRecord::Base
       when :add_by_url
         # Just add repository by url
         self.url = format_url attrs[:repository_url]
-        uri = URI(self.url.chomp('.git'))
-        res = Net::HTTP.get_response(uri)
-        Rails.logger.debug "tag #{res.code}" 
-        raise 'Repository doesn`t exist.' unless res.code == "200"
       when :create_with_project
         glp = gitlab_create(attrs) # create repository in gitlab
         self.url = get_url_of glp
