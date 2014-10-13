@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/Sazor/redmine_gitlab_integration.svg?branch=master)](https://travis-ci.org/Sazor/redmine_gitlab_integration)
-# Redmine Gitlab Integration Plugin
+m# Redmine Gitlab Integration Plugin
 This plugin provides ability to connect gitlab repositories to your redmine project. 
 For now plugin works only with Gitlab.
 ## Features
@@ -12,10 +11,10 @@ For now plugin works only with Gitlab.
 - Ability to remove and add new repositories in 'Gitlab' tab in project
 	- By using their address (just add link)
 	- With repository creation (such as in redmine project creation)
-	- Autoremove gitlab repository
+	- Autoremove gitlab repository (could be disabled in settings)
 - Project members synchronization
-	- By LDAP(same usernames) or by gitlab token .
-	- Add(remove) members and they will be added(removed) in all repositories connected with this project
+	- By LDAP(identical usernames) or by gitlab token
+	- Add(remove) members and they will be added(removed) in all repositories connected with this project 
 	- Role also is synchronized. But redmine has multirole system when in gitlab member has only one role, so add process uses first role and edit uses last role
 
 ## Installation
