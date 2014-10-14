@@ -1,26 +1,26 @@
 <% if ['new', 'create'].include? controller.action_name %>
-	<p><%= label_tag 'project[gitlab_create]', t(:gitlab_repository_checkbox) %><%= check_box_tag 'project[gitlab_create]', 'true', false %></p>
-	<% if !User.current.gitlab_token || User.current.gitlab_token.empty? %>
-		<fieldset class="box tabular" id="gitlab_auth_form"><legend><%= t(:gitlab_auth_legend) %></legend>
-		<p><%= label_tag :gitlab_login, t(:gitlab_login) %><%= text_field_tag :gitlab_login, '' %></p>
-		<p><%= label_tag :gitlab_pass, t(:gitlab_password) %><%= password_field_tag :gitlab_pass, '' %></p>
-		<%= hidden_field_tag 'gitlab_url', Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>
-		<%= button_tag t(:gitlab_log_in_btn), type: 'button', name: :gitlab_auth, id: 'gitlab_auth' %>
-		<div id="auth_status" class="flash"></div>
-		</fieldset>
-	<% end %>
-	<fieldset class="box tabular" id="gitlab_fieldset"><legend><%= t(:gitlab_project_legend) %></legend>
-	<p><%= label_tag 'project[gitlab_name]', t(:field_name) %><%= text_field_tag 'project[gitlab_name]', '', size: 60 %></p>
-	<p><%= label_tag 'project[gitlab_description]', t(:field_description) %><%= text_area_tag 'project[gitlab_description]', '',  rows: 8 %></p>
-	<p>
-	<%= label_tag 'project[visibility]', t(:visibility_level) %><br/>
-	<%= radio_button_tag 'project[visibility]', 0, true, class: "right-radio" %>
-	<%= label_tag 'project[visibility]_0', t(:visibility_private), class: "right-radio" %><br/>
-	<%= radio_button_tag 'project[visibility]', 10, false, class: "right-radio" %>
-	<%= label_tag 'project[visibility]_10', t(:visibility_internal), class: "right-radio" %><br/>
-	<%= radio_button_tag 'project[visibility]', 20, false, class: "right-radio" %>
-	<%= label_tag 'project[visibility]_20', t(:visibility_public), class: "right-radio" %>
-	<%= hidden_field_tag 'project[gitlab_token]', User.current.gitlab_token %>
-	</p>
-	</fieldset>
+  <p><%= label_tag 'project[gitlab_create]', t(:gitlab_repository_checkbox) %><%= check_box_tag 'project[gitlab_create]', 'true', false %></p>
+  <% if !User.current.gitlab_token || User.current.gitlab_token.empty? %>
+    <fieldset class="box tabular" id="gitlab_auth_form"><legend><%= t(:gitlab_auth_legend) %></legend>
+    <p><%= label_tag :gitlab_login, t(:gitlab_login) %><%= text_field_tag :gitlab_login, '' %></p>
+    <p><%= label_tag :gitlab_pass, t(:gitlab_password) %><%= password_field_tag :gitlab_pass, '' %></p>
+    <%= hidden_field_tag 'gitlab_url', Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>
+    <%= button_tag t(:gitlab_log_in_btn), type: 'button', name: :gitlab_auth, id: 'gitlab_auth' %>
+    <div id="auth_status" class="flash"></div>
+    </fieldset>
+  <% end %>
+  <fieldset class="box tabular" id="gitlab_fieldset"><legend><%= t(:gitlab_project_legend) %></legend>
+  <p><%= label_tag 'project[gitlab_name]', t(:field_name) %><%= text_field_tag 'project[gitlab_name]', '', size: 60 %></p>
+  <p><%= label_tag 'project[gitlab_description]', t(:field_description) %><%= text_area_tag 'project[gitlab_description]', '',  rows: 8 %></p>
+  <p>
+  <%= label_tag 'project[visibility]', t(:visibility_level) %><br/>
+  <%= radio_button_tag 'project[visibility]', 0, true, class: "right-radio" %>
+  <%= label_tag 'project[visibility]_0', t(:visibility_private), class: "right-radio" %><br/>
+  <%= radio_button_tag 'project[visibility]', 10, false, class: "right-radio" %>
+  <%= label_tag 'project[visibility]_10', t(:visibility_internal), class: "right-radio" %><br/>
+  <%= radio_button_tag 'project[visibility]', 20, false, class: "right-radio" %>
+  <%= label_tag 'project[visibility]_20', t(:visibility_public), class: "right-radio" %>
+  <%= hidden_field_tag 'project[gitlab_token]', User.current.gitlab_token %>
+  </p>
+  </fieldset>
 <% end %>

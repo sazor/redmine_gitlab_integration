@@ -13,8 +13,8 @@ Redmine::Plugin.register :redmine_gitlab_integration do
   version '0.3.0'
   url 'https://github.com/Sazor/redmine_gitlab_integration'
   author_url 'https://github.com/Sazor'
-  settings partial: 'settings/gitlab_int_settings', default: { 
-                                                              gitlab_url:          "https://gitlab.com", 
+  settings partial: 'settings/gitlab_int_settings', default: {
+                                                              gitlab_url:          "https://gitlab.com",
                                                               gitlab_members_sync: "disabled",
                                                               gitlab_autoremove:   "enabled"
                                                              }

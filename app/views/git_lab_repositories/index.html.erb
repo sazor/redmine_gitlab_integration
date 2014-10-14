@@ -5,11 +5,11 @@
     <%= javascript_include_tag 'repository', :plugin => 'redmine_gitlab_integration' %>
 <% end %>
 <% if user_has_token? && user_allowed_to_add? %>
-	<div id="btns">
-		<a class="flaticon-add add_btn"></a>
-		<a class="flaticon-four four_btn"></a>
-	</div>
-	<div id="add_repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
-	<div id="create_repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
+  <div id="btns">
+    <a class="flaticon-add add_btn"></a>
+    <a class="flaticon-four four_btn"></a>
+  </div>
+  <div id="add_repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
+  <div id="create_repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
 <% end %>
 

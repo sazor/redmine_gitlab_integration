@@ -1,39 +1,39 @@
 $(document).ready(function(){
-	$('.url_btn').click(function(){
-		$(this).siblings('.project_clone').val($(this).attr('data-clone'));
-		$(this).siblings('.url_btn.active').removeClass('active');
-		$(this).addClass('active');
-	});
-	$(".project_clone").click(function () {
-  	$(this).select();
-	});
-	$('.add_btn').click(function(){
-		$(this).hide();
-		$('.four_btn').hide();
-		$('.add_repository_form').show();
-	});
-	$('.four_btn').click(function(){
-		$(this).hide();
-		$('.add_btn').hide();
-		$('#form_gitlab_create').slideDown();
-	});
-	$('.close_btn').click(function(){
-		if($('#form_gitlab_create').css('display') == "none"){
-			$('.add_repository_form').hide();
-			$('#repository_url').val('');
-		}
-		else{
-			$('#form_gitlab_create').hide();
-		}
-		$('.add_btn').show();
-		$('.four_btn').show();
-	});
-	$('.approve_btn').click(function(){
-		if($('#form_gitlab_create').css('display') == "none"){
-			$('.add_repository_form').submit();
-		}
-		else{
-			$('#form_gitlab_create').submit();
-		}
-	});
+  $('.url_btn').click(function(){
+    $(this).siblings('.project_clone').val($(this).attr('data-clone'));
+    $(this).siblings('.url_btn.active').removeClass('active');
+    $(this).addClass('active');
+  });
+  $(".project_clone").click(function () {
+    $(this).select();
+  });
+  $('.add_btn').click(function(){
+    $(this).hide();
+    $('.four_btn').hide();
+    $('.add_repository_form').show();
+  });
+  $('.four_btn').click(function(){
+    $(this).hide();
+    $('.add_btn').hide();
+    $('#form_gitlab_create').slideDown();
+  });
+  $('.close_btn').click(function(){
+    if($('#form_gitlab_create').css('display') == "none"){
+      $('.add_repository_form').hide();
+      $('#repository_url').val('');
+    }
+    else{
+      $('#form_gitlab_create').hide();
+    }
+    $('.add_btn').show();
+    $('.four_btn').show();
+  });
+  $('.approve_btn').click(function(){
+    if($('#form_gitlab_create').css('display') == "none"){
+      $('.add_repository_form').submit();
+    }
+    else{
+      $('#form_gitlab_create').submit();
+    }
+  });
 });
