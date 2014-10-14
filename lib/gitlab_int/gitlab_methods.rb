@@ -16,7 +16,7 @@ module GitlabInt
       gitlab = gitlab_configure(attrs[:token])
       projects = gitlab.projects.map(&:to_h)
       projects.each do |p|
-        gitlab.delete_project(p["id"])
+        gitlab.delete_project(p['id'])
       end
     end
 
@@ -27,22 +27,18 @@ module GitlabInt
 
     def gitlab_member(options = {})
       roles = get_roles
+      operations =  {
+                      add:    ->(id, uid, rid, gitlab) { gitlab.add_team_member(id, uid, rid) },
+                      remove: ->(id, uid, rid, gitlab) { gitlab.remove_team_member(id, uid) },
+                      edit:   ->(id, uid, rid, gitlab) { gitlab.edit_team_member(id, uid, rid) }
+                    }
       login, repo_ids, role_id, op = options[:login], options[:repositories], options[:role], options[:op]
       gitlab = gitlab_configure(options[:token])
       # There is no searching by login, so we have to do it manually
       user = find_user(gitlab, login)
       #  Each repository from our list
       repo_ids.each do |id|
-        case op 
-        when :add
-          gitlab.add_team_member(id, user.id, roles[role_id])
-        when :remove
-          gitlab.remove_team_member(id, user.id)
-        when :edit
-          gitlab.edit_team_member(id, user.id, roles[role_id])
-        else
-          raise 'Unknown operation'
-        end
+        operations[op].call(id, user.id, roles[role_id], gitlab)
       end
     end
 
@@ -50,8 +46,6 @@ module GitlabInt
       roles = get_roles
       members, repo_id = options[:members], options[:repository]
       gitlab = gitlab_configure(options[:token])
-      # There is no searching by login, so we have to do it manually
-      all_users = gitlab.users(per_page: 100, page: 0) if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == "ldap"
       members.each do |member|
         user = find_user(gitlab, login)
         gitlab.add_team_member(repo_id, user.id, roles[member[:role]])
@@ -85,7 +79,7 @@ module GitlabInt
     end
 
     def find_user(gitlab, login)
-      if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == "ldap"
+      if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == 'ldap'
         gitlab.users(per_page: 100, page: 0).select { |u| u.username == login }.first
       else
         gitlab_get_user(login) # by Gitlab token

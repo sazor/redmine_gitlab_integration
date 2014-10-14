@@ -4,6 +4,7 @@ class GitLabRepository < ActiveRecord::Base
   belongs_to :project
   validate :gitlab_repo_created?
   before_destroy :destroy_repository
+  attr_accessible :url, :gitlab_id, :gitlab_err
   include GitlabInt::GitlabMethods
 
   def set_attributes(attrs)
@@ -54,14 +55,14 @@ class GitLabRepository < ActiveRecord::Base
   end
 
   def get_url_of(obj)
-  	replace_localhost(obj.to_h['http_url_to_repo'])
+    replace_localhost(obj.to_h['http_url_to_repo'])
   end
 
   def get_id_of(obj)
     obj.to_h['id']
   end
-  
+
   def replace_localhost(str)
-  	str.gsub('http://localhost', Setting.plugin_redmine_gitlab_integration['gitlab_url']) # if redmine and gitlab are hosted on same server
+    str.gsub('http://localhost', Setting.plugin_redmine_gitlab_integration['gitlab_url']) # if redmine and gitlab are hosted on same server
   end
 end
