@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Sazor/redmine_gitlab_integration.svg?branch=master)](https://travis-ci.org/Sazor/redmine_gitlab_integration)[![Code Climate](https://codeclimate.com/github/sazor/redmine_gitlab_integration/badges/gpa.svg)](https://codeclimate.com/github/sazor/redmine_gitlab_integration)
+[![Build Status](https://travis-ci.org/sazor/redmine_gitlab_integration.svg?branch=master)](https://travis-ci.org/Sazor/redmine_gitlab_integration)[![Code Climate](https://codeclimate.com/github/sazor/redmine_gitlab_integration/badges/gpa.svg)](https://codeclimate.com/github/sazor/redmine_gitlab_integration)
 # Redmine Gitlab Integration Plugin
 This plugin provides ability to connect gitlab repositories to your redmine project. 
 For now plugin works only with Gitlab.
