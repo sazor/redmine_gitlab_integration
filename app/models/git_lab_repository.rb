@@ -4,7 +4,7 @@ class GitLabRepository < ActiveRecord::Base
   belongs_to :project
   validate :gitlab_repo_created?
   before_destroy :destroy_repository
-  attr_accessible :url, :gitlab_id, :gitlab_err
+  attr_accessible :url
   include GitlabInt::GitlabMethods
 
   def set_attributes(attrs)
@@ -40,10 +40,12 @@ class GitLabRepository < ActiveRecord::Base
 
   def create_and_add_members(attrs)
     create_gitlab_repository(attrs)
-    if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] != "disabled"
-      members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
-      gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token]) unless members.empty?
-    end
+    add_members_to_gitlab(attrs) if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] != "disabled"
+  end
+
+  def add_members_to_gitlab(attrs)
+    members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
+    gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token]) unless members.empty?
   end
 
   def format_url(url)

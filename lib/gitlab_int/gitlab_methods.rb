@@ -29,7 +29,7 @@ module GitlabInt
       roles = get_roles
       operations =  {
                       add:    ->(id, uid, rid, gitlab) { gitlab.add_team_member(id, uid, rid) },
-                      remove: ->(id, uid, rid, gitlab) { gitlab.remove_team_member(id, uid) },
+                      remove: ->(id, uid, _, gitlab) { gitlab.remove_team_member(id, uid) },
                       edit:   ->(id, uid, rid, gitlab) { gitlab.edit_team_member(id, uid, rid) }
                     }
       login, repo_ids, role_id, op = options[:login], options[:repositories], options[:role], options[:op]

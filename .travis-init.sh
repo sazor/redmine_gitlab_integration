@@ -63,7 +63,7 @@ run_tests() {
   if [ "$VERBOSE" = "yes" ]; then
     TRACE=--trace
   fi
-
+  CODECLIMATE_REPO_TOKEN=45ea9d2c46692693cdf3f4577f160a630fe4dac75525071402ac26b103bae701 
   script -e -c "bundle exec rake redmine:plugins:test NAME="$PLUGIN $VERBOSE
 }
 
