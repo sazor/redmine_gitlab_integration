@@ -152,7 +152,7 @@ class ProjectWithRepositoriesTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select '#errorExplanation', false
     post 'my/account', user: { firstname: user.firstname, lastname: user.lastname, mail: user.mail, 
-                               language: user.language, gitlab_token: "WzFj8mBgZPCDdn1NzgLc", mail_notification: "all", 
+                               language: user.language, gitlab_token: user.gitlab_token, mail_notification: "all", 
                                notified_project_ids: [""] }
     assert_select '#errorExplanation', false
   end

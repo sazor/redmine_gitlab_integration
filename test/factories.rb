@@ -32,7 +32,7 @@ FactoryGirl.define do
     admin true
     mail "test_admin@gmail.com"
     login "sazor_test_admin"
-    gitlab_token "oim9b_ZecCzxnThLtvGg"
+    gitlab_token "5si-PJhPN-Ct8Y7MBXQs"
   end
 
   factory :user_1, class: User do
@@ -42,7 +42,7 @@ FactoryGirl.define do
     admin false
     mail "test_user1@gmail.com"
     login "sazor_test_1"
-    gitlab_token "WzFj8mBgZPCDdn1NzgLc"
+    gitlab_token "oYFoQsnFGpy3tSqVtdzV"
   end
 
   factory :user_2, class: User do
@@ -52,7 +52,7 @@ FactoryGirl.define do
     admin false
     mail "test_user2@gmail.com"
     login "sazor_test_2"
-    gitlab_token "nxW6g9pptEmy34Hsd_bw"
+    gitlab_token "dzKetg8Lrjc1vrb935gy"
   end
 
   factory :repo, class: GitLabRepository do
