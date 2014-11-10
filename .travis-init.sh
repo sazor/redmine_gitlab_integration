@@ -38,8 +38,6 @@ esac
 
 export BUNDLE_GEMFILE=$PATH_TO_REDMINE/Gemfile
 
-export CODECLIMATE_REPO_TOKEN=45ea9d2c46692693cdf3f4577f160a630fe4dac75525071402ac26b103bae701
-
 clone_redmine() {
   set -e # exit if clone fails
   rm -rf $PATH_TO_REDMINE

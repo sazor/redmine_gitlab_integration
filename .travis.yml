@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.0.0
 language: ruby
-cache: bundler
 env:
   - REDMINE_VERSION=2.5.1 VERBOSE=yes
 script:
