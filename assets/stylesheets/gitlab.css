@@ -6,7 +6,7 @@ p label.right-radio{
     margin-left: auto !important;
     text-align: left;
 }
-#gitlab_fieldset, #form_gitlab_create, #auth_status, .add_repository_form{
+#gitlab_fieldset, #form_gitlab_create .add_repository_form{
   display: none;
 }
 .git_holder{
@@ -47,9 +47,6 @@ p label.right-radio{
   width: 40%;
   margin-top: -19px;
   margin-left: 1px;
-}
-#gitlab_auth_form{
-  display: none;
 }
 a.delete_btn, a.close_btn{
   cursor: pointer;
