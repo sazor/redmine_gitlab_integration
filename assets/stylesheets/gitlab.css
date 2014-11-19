@@ -76,4 +76,7 @@ a.add_btn:hover, a.approve_btn:hover, a.four_btn:hover{
     border-color: #dd0000;
     color: #880000;
 }
+#user_gitlab_token{
+  width: 90%;
+}
 
