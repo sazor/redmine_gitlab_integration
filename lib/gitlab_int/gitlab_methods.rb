@@ -4,7 +4,8 @@ module GitlabInt
   module GitlabMethods
     def gitlab_create(attrs)
       gitlab = gitlab_configure(attrs[:token])
-      gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: attrs[:visibility])
+      visibility = attrs[:visibility].to_i * 10
+      gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: visibility)
     end
 
     def gitlab_destroy(attrs)

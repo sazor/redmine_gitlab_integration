@@ -2,4 +2,7 @@
     <%= stylesheet_link_tag 'gitlab', :plugin => 'redmine_gitlab_integration' %>
     <%= stylesheet_link_tag 'flaticon', :plugin => 'redmine_gitlab_integration' %>
     <%= javascript_include_tag 'gitlab', :plugin => 'redmine_gitlab_integration' %>
+    <% if User.current.logged? && (!User.current.gitlab_token || User.current.gitlab_token.empty?) %>
+      <%= javascript_include_tag 'gitlab_flash', :plugin => 'redmine_gitlab_integration' %>
+    <% end %>
 <% end %>

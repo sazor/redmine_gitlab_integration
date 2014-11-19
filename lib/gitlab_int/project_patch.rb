@@ -20,7 +20,7 @@ module GitlabInt
       def create_gitlab_repository(attrs)
         glr = GitLabRepository.new
         glr.set_attributes({ title: attrs['gitlab_name'], description: attrs['gitlab_description'],
-                             visibility: attrs['visibility'], token: attrs['gitlab_token'],
+                             visibility: attrs['is_public'], token: User.current.gitlab_token,
                              context: :create_with_project })
         if glr.save
           self.git_lab_repositories << glr
