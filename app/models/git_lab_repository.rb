@@ -53,7 +53,7 @@ class GitLabRepository < ActiveRecord::Base
   end
 
   def gitlab_repo_created?
-    errors.add(:base, I18n.t(:gitlab_creation_error)) if @gitlab_err
+    self.errors[:base] << "Error" if @gitlab_err
   end
 
   def get_url_of(obj)
