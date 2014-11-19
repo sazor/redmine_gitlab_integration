@@ -6,7 +6,7 @@ p label.right-radio{
     margin-left: auto !important;
     text-align: left;
 }
-#gitlab_fieldset, #form_gitlab_create .add_repository_form{
+#gitlab_fieldset, #form_gitlab_create, .add_repository_form{
   display: none;
 }
 .git_holder{
