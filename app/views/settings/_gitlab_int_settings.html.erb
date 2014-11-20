@@ -2,6 +2,9 @@
   <%= label_tag 'settings_gitlab_url', "Gitlab Url" %>
   <%= text_field_tag 'settings[gitlab_url]', settings['gitlab_url'] %>
   <br/>
+  <%= label_tag 'settings_gitlab_bot', "Bot token" %>
+  <%= text_field_tag 'settings[gitlab_bot]', settings['gitlab_bot'] %>
+  <br/>
   <%= label_tag 'settings[gitlab_members_sync]', "Project members synchronization" %>
   <%= radio_button_tag 'settings[gitlab_members_sync]', "ldap", (settings['gitlab_members_sync'] == "ldap"), class: "right-radio" %>
   <%= label_tag 'settings[gitlab_members_sync]_ldap', "LDAP (only if Gitlab users count <= 100)", class: "right-radio" %><br/>

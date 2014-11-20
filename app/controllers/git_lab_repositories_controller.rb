@@ -18,7 +18,7 @@ class GitLabRepositoriesController < ApplicationController
   def create
     @repository = GitLabRepository.new
     ext_hash = params[:repository_url]  ? { context: :add_by_url }
-                                        : { project_id: @project.id, context: :create_and_add_to_project,
+                                        : { project_id: @project.id, identifier: @project.identifier, context: :create_and_add_to_project,
                                             token: User.current.gitlab_token }
     @repository.set_attributes(params.merge(ext_hash)) # set attributes and optionally create repository in gitlab
     respond_to do |format|
