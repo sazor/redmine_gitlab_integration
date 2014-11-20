@@ -4,13 +4,19 @@ module GitlabInt
   module GitlabMethods
     def gitlab_create(attrs)
       gitlab = gitlab_configure
-      user = gitlab_configure(attrs[:token]).user
-      group = gitlab.create_group(attrs[:title], attrs[:identifier])
       visibility = attrs[:visibility].to_i * 10
       project = gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: visibility)
-      gitlab.transfer_project_to_group(group.id, project.id)
-      gitlab.add_group_member(group.id, user.id, 50)
-      project = gitlab.project(project.id)
+      gitlab.transfer_project_to_group(attrs[:group], project.id)
+      gitlab.project(project.id)
+    end
+
+    def gitlab_create_group(attrs)
+      gitlab_configure.create_group(attrs[:title], attrs[:identifier]).id
+    end
+
+    def gitlab_add_to_group(attrs)
+      user = gitlab_configure(attrs[:token]).user
+      gitlab_configure.add_group_member(attrs[:group], user.id, 50)
     end
 
     def gitlab_destroy(attrs)

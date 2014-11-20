@@ -4,7 +4,7 @@ class GitLabRepository < ActiveRecord::Base
   belongs_to :project
   validate :gitlab_repo_created?
   before_destroy :destroy_repository
-  attr_accessible :url
+  attr_protected :url, :project
   include GitlabInt::GitlabMethods
 
   def set_attributes(attrs)
@@ -17,7 +17,7 @@ class GitLabRepository < ActiveRecord::Base
         create_gitlab_repository(attrs)
       when :create_and_add_to_project
         # Create repository with members in gitlab and add it in redmine
-        create_and_add_members(attrs)
+        create_gitlab_repository(attrs)
       else
         raise
       end
@@ -33,14 +33,19 @@ class GitLabRepository < ActiveRecord::Base
   private
 
   def create_gitlab_repository(attrs)
+    unless attrs[:group] # project new or has no repositories
+      attrs[:group] = gitlab_create_group(attrs)
+      gitlab_add_to_group(attrs) # add project owner to group
+      if attrs[:context] == :create_and_add_to_project
+        project = Project.find(attrs[:project_id])
+        project.gitlab_group = attrs[:group]
+        project.save
+      end
+    end
     glp = gitlab_create(attrs) # create repository in gitlab
     self.url = get_url_of glp
     self.gitlab_id = get_id_of glp # repository id in gitlab
-  end
-
-  def create_and_add_members(attrs)
-    create_gitlab_repository(attrs)
-    add_members_to_gitlab(attrs) if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] != "disabled"
+    attrs[:group]
   end
 
   def add_members_to_gitlab(attrs)
