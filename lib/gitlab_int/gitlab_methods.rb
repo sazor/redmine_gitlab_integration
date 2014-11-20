@@ -4,12 +4,13 @@ module GitlabInt
   module GitlabMethods
     def gitlab_create(attrs)
       gitlab = gitlab_configure
+      user = gitlab_configure(attrs[:token]).user
       group = gitlab.create_group(attrs[:title], attrs[:identifier])
       visibility = attrs[:visibility].to_i * 10
       project = gitlab.create_project(attrs[:title], description: attrs[:description], visibility_level: visibility)
-      logger.info "tag #{project.to_h}"
       gitlab.transfer_project_to_group(group.id, project.id)
-      gitlab.project(project.id)
+      gitlab.add_group_member(group.id, user.id, 50)
+      project = gitlab.project(project.id)
     end
 
     def gitlab_destroy(attrs)
@@ -65,8 +66,8 @@ module GitlabInt
       end
     end
 
-    def gitlab_configure
-      token = Setting.plugin_redmine_gitlab_integration['gitlab_bot']
+    def gitlab_configure(token = nil)
+      token ||= Setting.plugin_redmine_gitlab_integration['gitlab_bot']
       Gitlab.client(endpoint: get_gitlab_url, private_token: token)
     end
 
