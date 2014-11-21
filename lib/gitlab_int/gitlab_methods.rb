@@ -14,9 +14,21 @@ module GitlabInt
       gitlab_configure.create_group(attrs[:title], attrs[:identifier]).id
     end
 
-    def gitlab_add_to_group(attrs)
+    def gitlab_member_and_group(attrs)
+      operations =  {
+                      add:    ->(gid, uid, rid) { gitlab_configure.add_group_member(gid, uid, rid) },
+                      remove: ->(gid, uid, _)   { gitlab_configure.remove_group_member(gid, uid) },
+                      edit:   ->(gid, uid, rid) { 
+                                                  gitlab_configure.remove_group_member(gid, uid)
+                                                  gitlab_configure.add_group_member(gid, uid, rid)
+                                                }
+                    }
+      role = attrs[:role] ? Setting.plugin_redmine_gitlab_integration['gitlab_role']["#{attrs[:role]}"] : 50
       user = gitlab_configure(attrs[:token]).user
-      gitlab_configure.add_group_member(attrs[:group], user.id, 50)
+      begin
+        operations[attrs[:op]].call(attrs[:group], user.id, role)
+      rescue
+      end
     end
 
     def gitlab_destroy(attrs)
@@ -37,25 +49,8 @@ module GitlabInt
       gitlab.team_members(options[:id])
     end
 
-    def gitlab_member(options = {})
-      roles = get_roles
-      operations =  {
-                      add:    ->(id, uid, rid, gitlab) { gitlab.add_team_member(id, uid, rid) },
-                      remove: ->(id, uid, _, gitlab) { gitlab.remove_team_member(id, uid) },
-                      edit:   ->(id, uid, rid, gitlab) { gitlab.edit_team_member(id, uid, rid) }
-                    }
-      login, repo_ids, role_id, op = options[:login], options[:repositories], options[:role], options[:op]
-      gitlab = gitlab_configure
-      # There is no searching by login, so we have to do it manually
-      user = find_user(gitlab, login)
-      #  Each repository from our list
-      repo_ids.each do |id|
-        operations[op].call(id, user.id, roles[role_id], gitlab)
-      end
-    end
-
     def gitlab_add_members(options = {})
-      roles = get_roles
+      roles = Setting.plugin_redmine_gitlab_integration['gitlab_role']
       members, repo_id = options[:members], options[:repository]
       gitlab = gitlab_configure
       members.each do |member|
@@ -81,14 +76,6 @@ module GitlabInt
       user = User.where(login: login).first
       gitlab = Gitlab.client(endpoint: get_gitlab_url, private_token: user.gitlab_token)
       gitlab.user
-    end
-
-    def get_roles
-      {
-        Role.where(name: I18n.t(:default_role_manager)).first.id   => 40,
-        Role.where(name: I18n.t(:default_role_developer)).first.id => 30,
-        Role.where(name: I18n.t(:default_role_reporter)).first.id  => 20
-      }
     end
 
     def find_user(gitlab, login)

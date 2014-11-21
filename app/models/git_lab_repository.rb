@@ -35,7 +35,8 @@ class GitLabRepository < ActiveRecord::Base
   def create_gitlab_repository(attrs)
     unless attrs[:group] # project new or has no repositories
       attrs[:group] = gitlab_create_group(attrs)
-      gitlab_add_to_group(attrs) # add project owner to group
+      attrs[:op] = :add
+      gitlab_member_and_group(attrs) # add project owner to group
       if attrs[:context] == :create_and_add_to_project
         project = Project.find(attrs[:project_id])
         project.gitlab_group = attrs[:group]
@@ -46,11 +47,6 @@ class GitLabRepository < ActiveRecord::Base
     self.url = get_url_of glp
     self.gitlab_id = get_id_of glp # repository id in gitlab
     attrs[:group]
-  end
-
-  def add_members_to_gitlab(attrs)
-    members = Project.find(attrs[:project_id]).members.map { |m| { login: m.user.login, role: m.roles.first.id } }
-    gitlab_add_members(members: members, repository: self.gitlab_id, token: attrs[:token]) unless members.empty?
   end
 
   def format_url(url)

@@ -13,5 +13,9 @@
   <%= radio_button_tag 'settings[gitlab_members_sync]', "disabled", (settings['gitlab_members_sync'] == "disabled"), class: "right-radio" %>
   <%= label_tag 'settings[gitlab_members_sync]_disabled', "disabled", class: "right-radio" %><br/><br/>
   <%= label_tag 'settings_gitlab_autoremove', "Autoremove repository" %>
-  <%= check_box_tag 'settings[gitlab_autoremove]', 'enabled', (settings['gitlab_autoremove'] == 'enabled') %>
+  <%= check_box_tag 'settings[gitlab_autoremove]', 'enabled', (settings['gitlab_autoremove'] == 'enabled') %><br/>
+  <% Role.select("id, name").each do |role| %>
+    <%= label_tag "settings[gitlab_role][#{role.id}]", role[:name] %>
+    <%= select_tag "settings[gitlab_role][#{role.id}]", options_for_select([["Reporter", 20], ["Developer", 30], ["Manager", 40], ["Owner", 50]], settings['gitlab_role']["#{role.id}"]) %><br/>
+  <% end %>
 </p>
