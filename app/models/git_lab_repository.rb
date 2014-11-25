@@ -5,6 +5,14 @@ class GitLabRepository < ActiveRecord::Base
   validate :gitlab_repo_created?
   before_destroy :destroy_repository
   attr_protected :url, :project
+  acts_as_event datetime: :created_at,
+                title: ->(r) { "Gitlab Plugin - #{r.title}" },
+                url: -> (r) { { controller: "git_lab_repositories", action: "index", project_id: r.project.id } }
+  acts_as_activity_provider permission: nil,
+                            timestamp: :created_at,
+                            find_options: { include: :project },
+                            author_key: nil
+
   include GitlabInt::GitlabMethods
 
   def set_attributes(attrs)
@@ -13,6 +21,7 @@ class GitLabRepository < ActiveRecord::Base
       when :add_by_url
         # Just add repository by url
         self.url = format_url attrs[:repository_url]
+        self.title = attrs[:title]
       when :create_with_project
         create_gitlab_repository(attrs)
       when :create_and_add_to_project
@@ -26,6 +35,10 @@ class GitLabRepository < ActiveRecord::Base
     end
   end
 
+  def author
+    User.current
+  end
+  
   def destroy_repository
     gitlab_destroy({ token: User.current.gitlab_token, id: self.gitlab_id }) if self.gitlab_id && Setting.plugin_redmine_gitlab_integration['gitlab_autoremove'] == "enabled"
   end
@@ -44,6 +57,8 @@ class GitLabRepository < ActiveRecord::Base
       end
     end
     glp = gitlab_create(attrs) # create repository in gitlab
+    self.description = attrs[:description]
+    self.title = attrs[:title]
     self.url = get_url_of glp
     self.gitlab_id = get_id_of glp # repository id in gitlab
     attrs[:group]

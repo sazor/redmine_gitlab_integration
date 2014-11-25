@@ -7,6 +7,7 @@ module GitlabInt
         has_many :git_lab_repositories, dependent: :destroy
         validate :gitlab_valid?
         safe_attributes :gitlab_group
+        after_create :set_project_to_repos
       end
     end
   
@@ -35,6 +36,12 @@ module GitlabInt
           { gitlab_group: group }
         else
           @gitlab_err = true
+        end
+      end
+
+      def set_project_to_repos
+        self.git_lab_repositories.each do |r|
+          r.project = self
         end
       end
 
