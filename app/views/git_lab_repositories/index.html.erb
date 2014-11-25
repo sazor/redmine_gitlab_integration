@@ -1,15 +1,20 @@
 <h2>GitLab</h2>
-<a href="<%= Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>" target="_blank"><h4><%= t(:gitlab_open) %></h4></a>
+<div class = "metro">
+<a href="<%= Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>" target="_blank"><h6 class=".subheader-secondary"><%= t(:gitlab_open) %></h6></a>
 <%= render partial: "repository", collection: @repositories, locals: { project: @project.id } %>
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'redmine_gitlab_integration' %>
+    <%= javascript_include_tag 'metro', :plugin => 'redmine_gitlab_integration' %>
+    <%= stylesheet_link_tag 'metro-bootstrap', :plugin => 'redmine_gitlab_integration' %>
 <% end %>
 <% if user_has_token? && user_allowed_to_add? %>
-  <div id="btns">
-    <a class="flaticon-add add_btn"></a>
-    <a class="flaticon-four four_btn"></a>
-  </div>
+    <button class="success add_btn">
+      Add exist
+    </button>
+    <button class="success create_btn">
+      Create new
+    </button>
   <div id="add_repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
   <div id="create_repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
 <% end %>
-
+</div>

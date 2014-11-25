@@ -9,10 +9,10 @@ $(document).ready(function(){
   });
   $('.add_btn').click(function(){
     $(this).hide();
-    $('.four_btn').hide();
+    $('.create_btn').hide();
     $('.add_repository_form').show();
   });
-  $('.four_btn').click(function(){
+  $('.create_btn').click(function(){
     $(this).hide();
     $('.add_btn').hide();
     $('#form_gitlab_create').slideDown();
@@ -26,7 +26,7 @@ $(document).ready(function(){
       $('#form_gitlab_create').hide();
     }
     $('.add_btn').show();
-    $('.four_btn').show();
+    $('.create_btn').show();
   });
   $('.approve_btn').click(function(){
     if($('#form_gitlab_create').css('display') == "none"){

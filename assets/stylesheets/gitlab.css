@@ -11,17 +11,11 @@ p label.right-radio{
 }
 .git_holder{
 }
-.url_btn{
-  font-weight: bold;
-  margin-right: -1px;
-  border: 2px solid #628db6;
-  padding: 6px 9px;
-  display: inline-block;
-  cursor:  pointer;
-  float: left;
-  background-color: #fff;
-  color: #555;
-  margin-top: 0px;
+.gitlab-textarea{
+  min-width: 60em;
+}
+a.title-url, a.title-url:hover, a.title-url:visited{
+  color: #fff;
 }
 .url_btn.active{
   color: #fff;
@@ -38,34 +32,32 @@ p label.right-radio{
 .project_clone, #repository_url{
   background: none repeat scroll 0 0 #fafafa;
   cursor: auto;
-/*  border: 2px solid #628db6; */
-  border: none;
-  padding: 4px 9px;
   font-family: "Menlo","Liberation Mono","Consolas","Courier New","andale mono","lucida console",monospace;
   color: #555555;
-  font-size: 13px;
+  font-size: 14px;
   width: 40%;
-  margin-top: -19px;
-  margin-left: 1px;
+  padding: 3px 8px;
+  margin-left: -3.2px;
 }
-a.delete_btn, a.close_btn{
+a.delete_btn{
+  float: right;
+  cursor: pointer;
+  color: #eff4ff;
+}
+a.close_btn{
   cursor: pointer;
   color: #169;
   padding-left: 5px;
 }
-a.delete_btn:hover, a.close_btn:hover{
+a.delete_btn:hover{
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+a.close_btn:hover{
   cursor: pointer;
   color: #ff4136;
   text-decoration: none;
-}
-a.add_btn, a.approve_btn, a.four_btn{
-  cursor: pointer;
-  color: #169;
-}
-a.add_btn:hover, a.approve_btn:hover, a.four_btn:hover{
-  color: #2ecc40;
-  text-decoration: none;
-  cursor: pointer;
 }
 #add_repository{
   padding-top: 10px;
