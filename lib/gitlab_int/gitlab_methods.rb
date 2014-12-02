@@ -50,12 +50,8 @@ module GitlabInt
     end
 
     def gitlab_add_members(options = {})
-      roles = Setting.plugin_redmine_gitlab_integration['gitlab_role']
-      members, repo_id = options[:members], options[:repository]
-      gitlab = gitlab_configure
-      members.each do |member|
-        user = find_user(gitlab, login)
-        gitlab.add_team_member(repo_id, user.id, roles[member[:role]])
+      options[:members].each do |m|
+        gitlab_member_and_group({ group: options[:group], op: :add, token: m[:token], role: m[:role] })
       end
     end
 

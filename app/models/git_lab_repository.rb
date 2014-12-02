@@ -50,10 +50,13 @@ class GitLabRepository < ActiveRecord::Base
       attrs[:group] = gitlab_create_group(attrs)
       attrs[:op] = :add
       gitlab_member_and_group(attrs) # add project owner to group
+      project = Project.find(attrs[:project_id])
       if attrs[:context] == :create_and_add_to_project
         project = Project.find(attrs[:project_id])
         project.gitlab_group = attrs[:group]
         project.save
+        members = project.members.map { |m| { token: m.user.gitlab_token, role: m.roles.first.id } }
+        gitlab_add_members(group: attrs[:group], members: members)
       end
     end
     glp = gitlab_create(attrs) # create repository in gitlab
