@@ -28,6 +28,7 @@ module GitlabInt
       begin
         operations[attrs[:op]].call(attrs[:group], user.id, role)
       rescue
+        # Redmine removes member twice, so it causes error
       end
     end
 
@@ -72,14 +73,6 @@ module GitlabInt
       user = User.where(login: login).first
       gitlab = Gitlab.client(endpoint: get_gitlab_url, private_token: user.gitlab_token)
       gitlab.user
-    end
-
-    def find_user(gitlab, login)
-      if Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == 'ldap'
-        gitlab.users(per_page: 100, page: 0).select { |u| u.username == login }.first
-      else
-        gitlab_get_user(login) # by Gitlab token
-      end
     end
 
     private

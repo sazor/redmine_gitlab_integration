@@ -14,6 +14,10 @@ module GitlabInt
           errors.add(:gitlab_token, "isn`t valid")
         end
       end
+
+      def has_token?
+        gitlab_token && !gitlab_token.empty?
+      end
     end
   end
 end

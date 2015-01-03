@@ -1,3 +1,0 @@
-<% if User.current.logged? && (!User.current.gitlab_token || User.current.gitlab_token.empty?) %>
-  <%= javascript_include_tag 'gitlab_flash', :plugin => 'redmine_gitlab_integration' %>
-<% end %>

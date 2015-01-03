@@ -1,22 +1,22 @@
-[![Build Status](https://travis-ci.org/sazor/redmine_gitlab_integration.svg?branch=master)](https://travis-ci.org/Sazor/redmine_gitlab_integration)[![Code Climate](https://codeclimate.com/github/sazor/redmine_gitlab_integration/badges/gpa.svg)](https://codeclimate.com/github/sazor/redmine_gitlab_integration)
+[![Code Climate](https://codeclimate.com/github/sazor/redmine_gitlab_integration/badges/gpa.svg)](https://codeclimate.com/github/sazor/redmine_gitlab_integration)
 # Redmine Gitlab Integration Plugin
 This plugin provides ability to connect gitlab repositories to your redmine project. 
 For now plugin works only with Gitlab.
 ## Features
 - Gitlab Repository creation in process of default Redmine Project creation (new form fields) with validation
-- Two ways of gitlab authorization
-  - Setting gitlab private token in user`s account
-  - Validation of gitlab private token
-  - Login/pass form (appears only if private token is empty)
+- Setting gitlab private token in account settings
+- Validation of gitlab private token
 - Gitlab page with list of all connected repositories
 - Ability to remove and add new repositories in 'Gitlab' tab in project
 	- By using their address (just add link)
 	- With repository creation (such as in redmine project creation)
 	- Autoremove gitlab repository (could be disabled in settings)
+- Gitlab group connected with all repositories of redmine project
 - Project members synchronization
-	- By LDAP(identical usernames) or by gitlab token
-	- Add(remove) members and they will be added(removed) in all repositories connected with this project 
-	- Role also is synchronized. But redmine has multirole system when in gitlab member has only one role, so add process uses first role and edit uses last role
+	- Add(remove) members and they will be added(removed) in gitlab group connected with this project 
+	- Role also is synchronized and you can set up connections between roles in both systems
+- Events for project activity
+- Attention message for users which haven't set gitlab token 
 
 ## Installation
 1. Clone this repository or download and unpack it to your_redmine_path/plugins
@@ -32,13 +32,12 @@ For now plugin works only with Gitlab.
 3. Restart Redmine
 
 ## Usage
-Set url of gitlab repository in plugin setting (without ending slash).
+You should set url of gitlab repository in plugin setting (without ending slash) and gitlab token of bot (with admin rights).
 
 In Gitlab account settings you can find your private token and copy it to Redmine account. 
 
-Setting gitlab private token give you abilities to:
-- Add/remove repositories in 'Gitlab' tab
-- Project members synchronization
-- Not authenticate in project creation
-
 If you want Gitlab page in your project you should check Gitlab in Modules list. You can create gitlab repository without it, but you will not be able to see it in Redmine.
+
+## License
+This plugin is released under the GPL v2 license. See LICENSE for more information.
+

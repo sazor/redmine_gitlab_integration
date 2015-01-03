@@ -6,12 +6,7 @@
   <%= text_field_tag 'settings[gitlab_bot]', settings['gitlab_bot'] %>
   <br/>
   <%= label_tag 'settings[gitlab_members_sync]', "Project members synchronization" %>
-  <%= radio_button_tag 'settings[gitlab_members_sync]', "ldap", (settings['gitlab_members_sync'] == "ldap"), class: "right-radio" %>
-  <%= label_tag 'settings[gitlab_members_sync]_ldap', "LDAP (only if Gitlab users count <= 100)", class: "right-radio" %><br/>
-  <%= radio_button_tag 'settings[gitlab_members_sync]', "token", (settings['gitlab_members_sync'] == "token"), class: "right-radio" %>
-  <%= label_tag 'settings[gitlab_members_sync]_token', "gitlab private tokens", class: "right-radio" %><br/>
-  <%= radio_button_tag 'settings[gitlab_members_sync]', "disabled", (settings['gitlab_members_sync'] == "disabled"), class: "right-radio" %>
-  <%= label_tag 'settings[gitlab_members_sync]_disabled', "disabled", class: "right-radio" %><br/><br/>
+  <%= check_box_tag 'settings[gitlab_members_sync]', 'enabled', (settings['gitlab_members_sync'] == 'enabled') %><br/>
   <%= label_tag 'settings_gitlab_autoremove', "Autoremove repository" %>
   <%= check_box_tag 'settings[gitlab_autoremove]', 'enabled', (settings['gitlab_autoremove'] == 'enabled') %><br/>
   <% Role.select("id, name").each do |role| %>
