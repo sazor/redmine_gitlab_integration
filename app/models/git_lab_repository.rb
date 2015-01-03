@@ -46,25 +46,28 @@ class GitLabRepository < ActiveRecord::Base
   private
 
   def create_gitlab_repository(attrs)
-    unless attrs[:group] # project new or has no repositories
-      attrs[:group] = gitlab_create_group(attrs)
-      attrs[:op] = :add
-      gitlab_member_and_group(attrs) # add project owner to group
-      project = Project.find(attrs[:project_id])
-      if attrs[:context] == :create_and_add_to_project
-        project = Project.find(attrs[:project_id])
-        project.gitlab_group = attrs[:group]
-        project.save
-        members = project.members.map { |m| { token: m.user.gitlab_token, role: m.roles.first.id } }
-        gitlab_add_members(group: attrs[:group], members: members)
-      end
-    end
+    create_gitlab_group(attrs) unless attrs[:group] # project new or has no repositories
     glp = gitlab_create(attrs) # create repository in gitlab
     self.description = attrs[:description]
     self.title = attrs[:title]
     self.url = get_url_of glp
     self.gitlab_id = get_id_of glp # repository id in gitlab
     attrs[:group]
+  end
+
+  def create_gitlab_group(attrs)
+    attrs[:group] = gitlab_create_group(attrs)
+    attrs[:op] = :add
+    gitlab_member_and_group(attrs) # add project owner to group
+    set_gitlab_group(attrs) if attrs[:context] == :create_and_add_to_project
+  end
+
+  def set_gitlab_group(attrs)
+    project = Project.find(attrs[:project_id])
+    project.gitlab_group = attrs[:group]
+    project.save
+    members = project.members.map { |m| { token: m.user.gitlab_token, role: m.roles.first.id } }
+    gitlab_add_members(group: attrs[:group], members: members)
   end
 
   def format_url(url)
