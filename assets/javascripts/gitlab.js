@@ -1,6 +1,5 @@
 $(document).ready(function(){
   $('#project_gitlab_create').removeAttr('checked');
-  var gitlab = {};
   $('#project_gitlab_create').change(function(){
     if($(this).is(':checked')){
       $('#project_gitlab_name').val($('#project_name').val());

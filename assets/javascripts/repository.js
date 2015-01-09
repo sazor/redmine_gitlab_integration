@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('#form_gitlab_create').slideDown();
   });
   $('.close_btn').click(function(){
-    if($('#form_gitlab_create').css('display') == "none"){
+    if($('#form_gitlab_create').css('display') === "none"){
       $('.add_repository_form').hide();
       $('#repository_url').val('');
     }
@@ -29,7 +29,7 @@ $(document).ready(function(){
     $('.create_btn').show();
   });
   $('.approve_btn').click(function(){
-    if($('#form_gitlab_create').css('display') == "none"){
+    if($('#form_gitlab_create').css('display') === "none"){
       $('.add_repository_form').submit();
     }
     else{

@@ -16,7 +16,8 @@ Redmine::Plugin.register :redmine_gitlab_integration do
   settings partial: 'settings/gitlab_int_settings', default: {
                                                               gitlab_url:          "https://gitlab.com",
                                                               gitlab_members_sync: "disabled",
-                                                              gitlab_autoremove:   "enabled"
+                                                              gitlab_autoremove:   "enabled",
+                                                              gitlab_role: { "1"=>"20", "2"=>"20", "3"=>"50", "4"=>"30", "5"=>"20" }
                                                              }
   project_module 'GitLab' do
     permission :access_to_gitlab_tab, { git_lab_repositories: :index }
