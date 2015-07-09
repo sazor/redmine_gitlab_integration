@@ -1,14 +1,14 @@
 $(document).ready(function(){
-  $('#project_gitlab_create').removeAttr('checked');
-  $('#project_gitlab_create').change(function(){
+  $('#project-gitlab-create').removeAttr('checked');
+  $('#project-gitlab-create').change(function(){
     if($(this).is(':checked')){
-      $('#project_gitlab_name').val($('#project_name').val());
-      $('#project_gitlab_description').val($('#project_description').val());
-      $('#gitlab_fieldset').slideDown();
+      $('#project-gitlab-name').val($('#project-name').val());
+      $('#project-gitlab-description').val($('#project-description').val());
+      $('#gitlab-fieldset').slideDown();
     }
     else{
-      $('#gitlab_auth_form').hide();
-      $('#gitlab_fieldset').hide();
+      $('#gitlab-auth-form').hide();
+      $('#gitlab-fieldset').hide();
     }
   });
 });

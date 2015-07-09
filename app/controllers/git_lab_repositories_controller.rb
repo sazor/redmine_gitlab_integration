@@ -16,17 +16,18 @@ class GitLabRepositoriesController < ApplicationController
   end
 
   def create
-    @repository = GitLabRepository.new
-    ext_hash = params[:repository_url]  ? { context: :add_by_url }
-                                        : { project_id: @project.id, 
-                                            identifier: @project.identifier, 
+    ext_hash = params[:repository_url]  ? { context: :add }
+                                        : { project_id: @project.id,
+                                            identifier: @project.identifier,
                                             group: @project.gitlab_group,
-                                            context: :create_and_add_to_project,
-                                            token: User.current.gitlab_token }
-    @repository.set_attributes(params.merge(ext_hash)) # set attributes and optionally create repository in gitlab
+                                            context: :create,
+                                            user_id: User.current.id }
+    begin
+      @repository = GitLabRepository.new.build(params.merge(ext_hash)) # set attributes and optionally create repository in gitlab
+    rescue
+    end
     respond_to do |format|
       if @repository.save
-        @project.git_lab_repositories << @repository # add repository to project
         format.html { redirect_to git_lab_url(@project.id), notice: t(:gitlab_create_success) }
       else
         format.html { redirect_to git_lab_url(@project.id), alert: t(:gitlab_create_error) }

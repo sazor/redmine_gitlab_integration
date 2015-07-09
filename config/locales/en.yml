@@ -18,3 +18,6 @@ en:
   gitlab_settings_members_sync: "Project members synchronization (LDAP & Gitlab users count < 500)"
   gitlab_settings_members_sync_no_ldap: "Project members synchronization (Tokens)"
   gitlab_token_error: "isn`t valid. Please check it in your Gitlab account."
+  gitlab_remove: "Remove"
+  gitlab_create: "Create new"
+  gitlab_add: "Add exist"

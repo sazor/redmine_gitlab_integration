@@ -17,3 +17,6 @@ ru:
   gitlab_open: "Открыть в новой вкладке"
   gitlab_settings_members_sync: "Синхронизация участников проекта (LDAP)"
   gitlab_token_error: "не корректен. Пожалуйста проверьте ваш аккаунт на gitlab."
+  gitlab_remove: "Удалить"
+  gitlab_create: "Создать новый"
+  gitlab_add: "Добавить"

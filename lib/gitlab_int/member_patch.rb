@@ -11,19 +11,18 @@ module GitlabInt
     end
 
     module InstanceMethods
-      include GitlabMethods
       def gitlab_module_enabled_and_token_exists?
         (project.module_enabled?("GitLab") && Setting.plugin_redmine_gitlab_integration['gitlab_members_sync'] == "enabled" &&
          User.current.has_token?)
       end
 
       def member_in_gitlab(op)
-        role     = case op
-                   when :add  then member_roles.first.role_id
-                   when :edit then member_roles.last.role_id
-                   else nil
-                   end
-        gitlab_member_and_group(token: user.gitlab_token, group: project.gitlab_group, role: role, op: op)
+        GitLabRepository.gitlab_member({
+          token: user.gitlab_token,
+          group: project.gitlab_group,
+          role: member_roles.last.present? ? member_roles.last.role_id : nil,
+          op: op
+        })
       end
     end
   end

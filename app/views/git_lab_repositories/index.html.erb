@@ -1,20 +1,20 @@
+<div class="contextual">
+  <a class="icon icon-document create-btn" ><%= t(:gitlab_create) %></a>
+  <a class="icon icon-add add-btn" ><%= t(:gitlab_add) %></a>
+</div>
 <h2>GitLab</h2>
-<div class = "metro">
 <a href="<%= Setting.plugin_redmine_gitlab_integration['gitlab_url'] %>" target="_blank"><h6 class=".subheader-secondary"><%= t(:gitlab_open) %></h6></a>
 <%= render partial: "repository", collection: @repositories, locals: { project: @project.id } %>
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'repository', :plugin => 'redmine_gitlab_integration' %>
-    <%= javascript_include_tag 'metro', :plugin => 'redmine_gitlab_integration' %>
-    <%= stylesheet_link_tag 'metro-bootstrap', :plugin => 'redmine_gitlab_integration' %>
 <% end %>
 <% if user_has_token? && user_allowed_to_add? %>
-    <button class="success add_btn">
+    <button class="success add-btn">
       Add exist
     </button>
-    <button class="success create_btn">
+    <button class="success create-btn">
       Create new
     </button>
-  <div id="add_repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
-  <div id="create_repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
+  <div id="add-repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
+  <div id="create-repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
 <% end %>
-</div>
