@@ -1,6 +1,6 @@
 <% if ['new', 'create'].include? controller.action_name %>
   <p><%= label_tag 'project[gitlab_create]', t(:gitlab_repository_checkbox) %><%= check_box_tag 'project[gitlab_create]', 'true', false %></p>
-  <fieldset class="box tabular" id="gitlab_fieldset"><legend><%= t(:gitlab_project_legend) %></legend>
+  <fieldset class="box tabular" id="gitlab-fieldset"><legend><%= t(:gitlab_project_legend) %></legend>
   <p><%= label_tag 'project[gitlab_name]', t(:field_name) %><%= text_field_tag 'project[gitlab_name]', '', size: 60 %></p>
   <p><%= label_tag 'project[gitlab_description]', t(:field_description) %><%= text_area_tag 'project[gitlab_description]', '',  rows: 8 %></p>
   </fieldset>

@@ -9,12 +9,6 @@
     <%= javascript_include_tag 'repository', :plugin => 'redmine_gitlab_integration' %>
 <% end %>
 <% if user_has_token? && user_allowed_to_add? %>
-    <button class="success add-btn">
-      Add exist
-    </button>
-    <button class="success create-btn">
-      Create new
-    </button>
   <div id="add-repository"><%= render partial: "add_repository", locals: { project: @project.id } %></div>
   <div id="create-repository"><%= render partial: "create_repository", locals: { project: @project.id } %></div>
 <% end %>
