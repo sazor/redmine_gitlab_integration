@@ -10,13 +10,6 @@ class GitLabRepository < ActiveRecord::Base
   before_destroy :destroy_repository
   attr_accessible :description, :title, :url, :gitlab_id, :user_id, :project_id
 
-  acts_as_event datetime: :created_at,
-                title: ->(r) { "Gitlab Plugin - #{r.title}" },
-                url: -> (r) { { controller: "git_lab_repositories", action: "index", project_id: r.project_id } }
-
-  acts_as_activity_provider permission: :all,
-                            timestamp: :created_at,
-                            author_key: :user_id
   def build(attrs)
     case attrs[:context]
     when :add
@@ -24,10 +17,6 @@ class GitLabRepository < ActiveRecord::Base
     when :create
       create_gitlab_repository(attrs)
     end
-  end
-
-  def author
-    user || User.current
   end
 
   private

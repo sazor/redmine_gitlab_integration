@@ -25,5 +25,3 @@ Redmine::Plugin.register :redmine_gitlab_integration do
   end
   menu :project_menu, :git_lab_repositories, { controller: 'git_lab_repositories', action: 'index' }, caption: 'GitLab', after: :activity, param: :project_id
 end
-
-Redmine::Activity.register :git_lab_repositories
