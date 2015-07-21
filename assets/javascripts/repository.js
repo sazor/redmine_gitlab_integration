@@ -7,20 +7,22 @@ $(document).ready(function(){
   $(".project-clone").click(function () {
     $(this).select();
   });
-  $('.add-btn').click(function(){
+  $('.add-btn').click(function(e){
     $('#form-gitlab-create').hide();
     $('.add-repository-form').show();
   });
   $('.create-btn').click(function(){
     $('.add-repository-form').hide();
-    $('#form-gitlab-create').slideDown();
+    $('#form-gitlab-create').show();
   });
-  $('.close-btn').click(function(){
+  $('.close-btn').click(function(e){
+    e.preventDefault();
     $('.add-repository-form').hide();
     $('#form-gitlab-create').hide();
     $('#repository-url').val('');
   });
-  $('.approve-btn').click(function(){
+  $('.approve-btn').click(function(e){
+    e.preventDefault();
     if($('#form-gitlab-create').css('display') === "none"){
       $('.add-repository-form').submit();
     }

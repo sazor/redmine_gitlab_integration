@@ -3,7 +3,7 @@
 <h3 class="repository-title">
   <%= link_to repository.title, repository.url, target: '_blank' %>
 </h3>
-<%= link_to t(:gitlab_remove), git_lab_repository_destroy_path(project, repository.id), confirm: t(:gitlab_confirm), method: :delete, class: "icon icon-del repository-remove" %>
+<%= link_to t(:gitlab_remove), git_lab_repository_destroy_path(project, repository.id), data: { confirm: t(:gitlab_confirm) }, method: :delete, class: "icon icon-del repository-remove" %>
 </div>
 <div class='git-holder'>
     <button class='url-btn ssh-btn active' id='<%= btn_id("ssh", repository.id) %>' data-clone='<%= ssh_url(repository.url) %>'>SSH</button>

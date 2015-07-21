@@ -4,6 +4,12 @@
 .repository-remove {
   float: right;
 }
+.create-btn {
+  cursor: pointer;
+}
+.add-btn {
+  cursor: pointer;
+}
 p input.right-radio[type="radio"]{
     float: left;
     clear: left;

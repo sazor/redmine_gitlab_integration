@@ -1,21 +1,18 @@
 <%= form_tag git_lab_repository_create_path(project), { id: 'form-gitlab-create' } do %>
-  <fieldset><legend><%= t(:gitlab_project_legend) %></legend>
-  <%= label_tag :title, t(:field_name) %>
-  <div class="input-control text">
-  <%= text_field_tag :title, "#{@project.identifier}_", size: 60 %>
-  </div>
-  <%= label_tag :description, t(:field_description) %>
-  <div class="input-control text">
-  <%= text_area_tag :description, '',  rows: 4, class: 'gitlab-textarea' %>
-  </div><br/><br/>
-  <div class="input-control switch">
-    <label>
-        Is public?
-        <%= check_box_tag 'visibility' %>
-        <span class="check"></span>
-    </label>
-  </div>
+  <fieldset class="box tabular"><legend><%= t(:gitlab_project_legend) %></legend>
+  <p>
+    <%= label_tag :title, t(:field_name) %>
+    <%= text_field_tag :title, "#{@project.identifier}_", size: 60 %>
+  </p>
+  <p>
+    <%= label_tag :description, t(:field_description) %>
+    <%= text_area_tag :description, '',  rows: 4, class: 'gitlab-textarea' %>
+  </p>
+  <p>
+    <%= label_tag :visibility, t(:visibility_public) %>
+    <%= check_box_tag 'visibility' %>
+  </p>
   </fieldset>
-  <a class="flaticon-accept approve_btn"></a>
-  <a class="flaticon-prohibition close_btn"></a>
+  <input type="submit" class="approve-btn" value=<%= t(:button_create) %>>
+  <input type="submit" class="close-btn" value=<%= t(:button_cancel) %>>
 <% end %>
