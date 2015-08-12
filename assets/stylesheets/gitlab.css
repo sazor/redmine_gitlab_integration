@@ -1,3 +1,15 @@
+.repository-title {
+  display: inline;
+}
+.repository-remove {
+  float: right;
+}
+.create-btn {
+  cursor: pointer;
+}
+.add-btn {
+  cursor: pointer;
+}
 p input.right-radio[type="radio"]{
     float: left;
     clear: left;
@@ -6,10 +18,11 @@ p label.right-radio{
     margin-left: auto !important;
     text-align: left;
 }
-#gitlab_fieldset, #form_gitlab_create, .add_repository_form{
+#gitlab-fieldset, #form-gitlab-create, .add-repository-form{
   display: none;
 }
-.git_holder{
+.git-holder{
+  margin-top: 10px;
 }
 .gitlab-textarea{
   min-width: 60em;
@@ -17,49 +30,56 @@ p label.right-radio{
 a.title-url, a.title-url:hover, a.title-url:visited{
   color: #fff;
 }
-.url_btn.active{
+.icon-document {
+  background-image: url(/images/document.png);
+}
+.url-btn {
+  border: none;
+  background-color: #ffffff;
+  padding: 3px 6px;
+  height: 26px;
+}
+.url-btn.active{
   color: #fff;
   background-color: #628db6;
+  border: none;
 }
-.url_btn.active:hover{
+.url-btn.active:hover{
   color: #fff;
   background-color: #628db6;
+  border: none;
 }
-.url_btn:hover{
+.url-btn:hover{
   background-color: #759fcf;
   color: #fff;
+  border: none;
 }
-.project_clone, #repository_url{
-  background: none repeat scroll 0 0 #fafafa;
-  cursor: auto;
-  font-family: "Menlo","Liberation Mono","Consolas","Courier New","andale mono","lucida console",monospace;
-  color: #555555;
+.project-clone, #repository-url{
   font-size: 14px;
   width: 40%;
   padding: 3px 8px;
-  margin-left: -3.2px;
 }
-a.delete_btn{
+a.delete-btn{
   float: right;
   cursor: pointer;
   color: #eff4ff;
 }
-a.close_btn{
+a.close-btn{
   cursor: pointer;
   color: #169;
   padding-left: 5px;
 }
-a.delete_btn:hover{
+a.delete-btn:hover{
   cursor: pointer;
   color: #fff;
   text-decoration: none;
 }
-a.close_btn:hover{
+a.close-btn:hover{
   cursor: pointer;
   color: #ff4136;
   text-decoration: none;
 }
-#add_repository{
+#add-repository{
   padding-top: 10px;
 }
 .alert{
@@ -68,7 +88,7 @@ a.close_btn:hover{
     border-color: #dd0000;
     color: #880000;
 }
-#user_gitlab_token{
+#user-gitlab-token{
   width: 90%;
 }
 

@@ -1,39 +1,33 @@
 $(document).ready(function(){
-  $('.url_btn').click(function(){
-    $(this).siblings('.project_clone').val($(this).attr('data-clone'));
-    $(this).siblings('.url_btn.active').removeClass('active');
+  $('.url-btn').click(function(){
+    $(this).siblings('.project-clone').val($(this).attr('data-clone'));
+    $(this).siblings('.url-btn.active').removeClass('active');
     $(this).addClass('active');
   });
-  $(".project_clone").click(function () {
+  $(".project-clone").click(function () {
     $(this).select();
   });
-  $('.add_btn').click(function(){
-    $(this).hide();
-    $('.create_btn').hide();
-    $('.add_repository_form').show();
+  $('.add-btn').click(function(e){
+    $('#form-gitlab-create').hide();
+    $('.add-repository-form').show();
   });
-  $('.create_btn').click(function(){
-    $(this).hide();
-    $('.add_btn').hide();
-    $('#form_gitlab_create').slideDown();
+  $('.create-btn').click(function(){
+    $('.add-repository-form').hide();
+    $('#form-gitlab-create').show();
   });
-  $('.close_btn').click(function(){
-    if($('#form_gitlab_create').css('display') === "none"){
-      $('.add_repository_form').hide();
-      $('#repository_url').val('');
+  $('.close-btn').click(function(e){
+    e.preventDefault();
+    $('.add-repository-form').hide();
+    $('#form-gitlab-create').hide();
+    $('#repository-url').val('');
+  });
+  $('.approve-btn').click(function(e){
+    e.preventDefault();
+    if($('#form-gitlab-create').css('display') === "none"){
+      $('.add-repository-form').submit();
     }
     else{
-      $('#form_gitlab_create').hide();
-    }
-    $('.add_btn').show();
-    $('.create_btn').show();
-  });
-  $('.approve_btn').click(function(){
-    if($('#form_gitlab_create').css('display') === "none"){
-      $('.add_repository_form').submit();
-    }
-    else{
-      $('#form_gitlab_create').submit();
+      $('#form-gitlab-create').submit();
     }
   });
 });

@@ -1,6 +1,14 @@
-<%= form_tag git_lab_repository_create_path(project), class: "add_repository_form" do %>
-  <%= text_field_tag :title, '', placeholder: 'Title', required: true %>
-  <%= text_field_tag :repository_url, '', placeholder: 'https://gitlab.com/user/repository.git', required: true %>
-  <a class="flaticon-accept approve_btn"></a>
-  <a class="flaticon-prohibition close_btn"></a>
+<%= form_tag git_lab_repository_create_path(project), class: "add-repository-form" do %>
+  <fieldset class="box tabular"><legend><%= t(:gitlab_project_legend) %></legend>
+  <p>
+    <%= label_tag :repository_url, t(:field_name) %>
+    <%= text_field_tag :title, "#{@project.identifier}_", required: true, size: 60 %>
+  </p>
+  <p>
+    <%= label_tag :repository_url, "URL" %>
+    <%= text_field_tag :repository_url, '', placeholder: 'https://gitlab.com/user/repository.git', required: true,  size: 60 %>
+  </p>
+  </fieldset>
+  <input type="submit" class="approve-btn" value=<%= t(:button_add) %>>
+  <input type="submit" class="close-btn" value=<%= t(:button_cancel) %>>
 <% end %>

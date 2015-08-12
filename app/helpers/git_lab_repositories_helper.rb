@@ -1,6 +1,6 @@
 module GitLabRepositoriesHelper
   def ssh_url(url)
-    url.gsub('http://', 'git@')
+    url.gsub(/https?\:\/\//, "git@")
   end
 
   def btn_id(type, id)

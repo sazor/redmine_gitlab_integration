@@ -4,11 +4,10 @@ $(document).ready(function(){
     if($(this).is(':checked')){
       $('#project_gitlab_name').val($('#project_name').val());
       $('#project_gitlab_description').val($('#project_description').val());
-      $('#gitlab_fieldset').slideDown();
+      $('#gitlab-fieldset').slideDown();
     }
     else{
-      $('#gitlab_auth_form').hide();
-      $('#gitlab_fieldset').hide();
+      $('#gitlab-fieldset').hide();
     }
   });
 });

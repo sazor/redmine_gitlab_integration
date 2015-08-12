@@ -1,16 +1,16 @@
-<div class="panel">
-<div class="panel-header bg-lightBlue fg-white">
-  <%= link_to repository.title, repository.url, class: 'title-url', target: '_blank' %>
-  <%= link_to content_tag("span", ""), git_lab_repository_destroy_path(project, repository.id), confirm: t(:gitlab_confirm), method: :delete, class: "flaticon-close delete_btn" %>
+<div class="box">
+<div class="repository-header">
+<h3 class="repository-title">
+  <%= link_to repository.title, repository.url, target: '_blank' %>
+</h3>
+<%= link_to t(:gitlab_remove), git_lab_repository_destroy_path(project, repository.id), data: { confirm: t(:gitlab_confirm) }, method: :delete, class: "icon icon-del repository-remove" %>
 </div>
-<div class="panel-content">
-<div class='git_holder'>
-    <button class='url_btn ssh_btn active' id='<%= btn_id("ssh", repository.id) %>' data-clone='<%= ssh_url(repository.url) %>'>SSH</button>
-    <button class='url_btn http_btn' id='<%= btn_id("http", repository.id) %>' data-clone='<%= repository.url %>'>HTTP</button>
-  <input class='project_clone' id='<%= project_clone_id(repository.id) %>' name="project_clone" readonly="readonly" type="text" value="<%= ssh_url(repository.url) %>" autocomplete="off"/>
+<div class='git-holder'>
+    <button class='url-btn ssh-btn active' id='<%= btn_id("ssh", repository.id) %>' data-clone='<%= ssh_url(repository.url) %>'>SSH</button>
+    <button class='url-btn http-btn' id='<%= btn_id("http", repository.id) %>' data-clone='<%= repository.url %>'>HTTP</button>
+  <input class='project-clone' id='<%= project_clone_id(repository.id) %>' name="project_clone" readonly="readonly" type="text" value="<%= ssh_url(repository.url) %>" autocomplete="off"/>
 </div>
 <p>
   <%= show_description(repository) %>
 </p>
-</div>
 </div>
